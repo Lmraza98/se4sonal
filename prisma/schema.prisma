@@ -19,55 +19,100 @@ model User {
 
 model Product {
   id          Int            @id @default(autoincrement())
+  stripeId    String
   name        String
   description String
-  price       Float
-  stock       Int
+  stock       Int?
   categoryId  Int
-  imageId     Int
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
-  images      ProductImage[]
-  collections ProductCollection[]
+  capsuleId   Int
+  mainImageId Int            @unique
+  priceId     Int
+  sizeIds     Int[]
+  active      Boolean        @default(true)
+  price       Price          @relation("ProductToPrice", fields: [priceId], references: [id], map: "Product_Price_fkey")
+  capsule     Capsule        @relation("ProductToCapsule", fields: [capsuleId], references: [id], map: "Product_Capsule_fkey")
+  category    Category       @relation("ProductToCategory", fields: [categoryId], references: [id], map: "Product_Category_fkey")
+  sizes       Sizes[]        
+  mainImage   ProductImage   @relation("MainImage", fields: [mainImageId], references: [id])
+  images      ProductImage[] @relation("AdditionalImages")
 
-  @@index([name])
-}
-model ProductCollection {
-  productId   Int
-  collectionId Int
-
-  product     Product @relation(fields: [productId], references: [id])
-  collection  Collection @relation(fields: [collectionId], references: [id])
-
-  @@id([productId, collectionId])
-}
-model Collection {
-  id          Int      @id @default(autoincrement())
-  name        String
-  description String
-  products    ProductCollection[]
-
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  @@index([name, capsuleId])
 }
 
 model ProductImage {
   id        Int      @id @default(autoincrement())
+  imageId   Int
   productId Int
-  url       String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  product   Product  @relation(fields: [productId], references: [id])
 
-  @@index([productId])
+  Image     Image    @relation(fields: [imageId], references: [id])
+  Product   Product  @relation("AdditionalImages", fields: [productId], references: [id])
+  mainProduct Product? @relation("MainImage")
+
+  @@index([productId, imageId])
 }
 
-model Categories {
-  id          Int    @id @default(autoincrement())
+model Image {
+  id         Int       @id @default(autoincrement())
+  url        String
+  fileName   String
+  fileSize   Int
+  fileKey    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  ProductImages ProductImage[]
+
+  @@index([id])
+}
+
+
+model Capsule {
+  id          Int       @id @default(autoincrement())
   name        String
   description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  products    Product[]      @relation("ProductToCapsule")
+}
+
+model Size {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  products    Sizes[]
 
   @@index([name])
+}
+
+model Sizes {
+  productId Int
+  sizeId    Int
+
+  product Product @relation(fields: [productId], references: [id])
+  size    Size    @relation(fields: [sizeId], references: [id])
+
+  @@id([productId, sizeId])
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  products    Product[]      @relation("ProductToCategory")
+
+  @@index([name])
+}
+
+model Price {
+  id          Int       @id @default(autoincrement())
+  stripeId    String
+  price       Float
+  description String
+  products    Product[]      @relation("ProductToPrice")
 }
 
 model OrdersTable {

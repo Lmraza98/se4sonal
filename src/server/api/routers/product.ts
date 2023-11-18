@@ -1,79 +1,109 @@
 import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@app/server/api/trpc";
-import { db } from "@app/server/db";
 
+import { type  Prisma } from "@prisma/client";
 export const productRouter = createTRPCRouter({
-    getInfiniteProducts: publicProcedure
+  getProductById: publicProcedure
+  .input(
+    z.object({
+      id: z.number().min(1).max(100),
+    }),
+  )
+  .query(async ({ ctx, input }) => {
+    const product = await ctx.db.product.findUnique({
+      where: {
+        id: input.id,
+      },
+      include: {
+        images: true,
+      }
+    });
+    if (!product) {
+      throw new Error("Product not found");
+    }
+    return product;
+  }),
+  getAllProducts: publicProcedure.query(async ({ ctx }) => {
+    const products = await ctx.db.product.findMany();
+
+    return products;
+  }),
+  createProduct: publicProcedure
+    .input(
+      z.object({
+        id: z.number(),
+        name: z.string().min(1).max(50),
+        description: z.string().min(1).max(50),
+        price: z.number().min(1).max(1000000000),
+        mainImageId: z.number(),
+        imageIds: z.array(z.number()),
+        categoryId: z.number(),
+        stock: z.number(),
+        capsuleId: z.number(),
+        priceId: z.number(),
+        sizeIds: z.array(z.number()),
+
+      }),
+    )
+    .query(async ({ ctx, input }) => {
+
+      const product = await ctx.db.product.create({
+        data: {
+          name: input.name,
+          description: input.description,
+          stock: input.stock,
+          mainImageId: input.mainImageId, // Always provided as per schema
+          priceId: input.priceId,
+          categoryId: input.categoryId,
+          capsuleId: input.capsuleId,
+          images: {
+            connect: input.imageIds.map((id) => ({ id })),
+          }
+          // No need for optional checks on mainImageId
+        },
+      })
+      
+      return {
+        product,
+      };
+    }),
+    attachImageToProduct: publicProcedure
         .input(
             z.object({
-                limit: z.number().min(1).max(100).nullish(),
-                cursor: z.number().nullish()
+                imageId: z.number(),
+                productId: z.number(),
             })
         )
         .query( async ({ ctx, input }) => {
-            const limit = input.limit ?? 50
-            const { cursor } = input
-            const items = await ctx.db.product.findMany({
-                take: limit + 1,
-                cursor: cursor ? { id: cursor } : undefined,
-                orderBy: {
-                    createdAt: 'asc'
+            const product = await ctx.db.product.findUnique({
+                where: {
+                    id: input.productId
                 }
             })
-            let nextCursor: typeof cursor | undefined = undefined
-            if ( items.length > limit ) {
-                const nextItem = items.pop()
-                nextCursor = nextItem!.myCursor
+            if ( !product ) {
+                throw new Error("Product not found")
             }
-
-            return {
-                items, 
-                nextCursor
+            const image = await ctx.db.productImage.findUnique({
+                where: {
+                    id: input.imageId
+                }
+            })
+            if ( !image ) {
+                throw new Error("Image not found")
             }
-        }),
-  getAllProducts: publicProcedure
-    .query( async ({ ctx }) => {
-        const products = await ctx.db.product.findMany() 
-
-        return products
-    }),
-createProduct: publicProcedure
-    .input(
-        z.object({
-            id: z.number(),
-            categoryId: z.number(),
-            stock: z.number(),
-            name: z.string().min(1).max(50),
-            description: z.string().min(1).max(50),
-            price: z.number().min(1).max(1000000000),
-            imageId: z.number(),
-            images: z.string().min(1).max(50),
-            rating: z.number().min(1).max(5),
-            numReviews: z.number().min(1).max(1000000000),
-            countInStock: z.number().min(1).max(1000000000)
+            const updatedProduct = await ctx.db.product.update({
+                where: {
+                    id: input.productId
+                },
+                data: {
+                    ProductImage: {
+                        connect: {
+                            id: input.imageId
+                        }
+                    }
+                }
+            })
+            return updatedProduct
         })
-    )
-    .query( async({ ctx, input }) => {
-        const product = await ctx.db.product.create({
-            data: {
-                name: input.name,
-                description: input.description,
-                price: input.price,
-                imageId: input.imageId,
-                categoryId: input.categoryId,
-                stock: input.stock,
-                images: input.images,
-                id: input.id,
-            }
-        })
-
-        ctx.db.productImage.create({
-
-        })
-
-        return {
-            product,
-        }
-    }))
 });

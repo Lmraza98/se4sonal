@@ -5,8 +5,8 @@ import { headers } from "next/headers";
 
 import { TRPCReactProvider } from "@app/trpc/react";
 
-import AnnouncementBar from "@app/app/_components/banner";
-import { Logo } from "@app/app/_components";
+import AnnouncementBar from "@app/components/banner";
+import { Logo } from "@app/components";
 
 import Link from 'next/link'
 
