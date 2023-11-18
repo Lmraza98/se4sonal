@@ -3,10 +3,34 @@ import type { RouterOutputs } from "@app/trpc/shared"
 import Image from 'next/image'
 import { api } from '@app/trpc/server'
 
-export type ProductWithImage = RouterOutputs['product']['getProductById']
+
+export type ProductWithImage = RouterOutputs['product']['getProduct']
 
 const Product: React.FC<{ product: ProductWithImage }> = async ({ product }) => {
-    const { name, description, priceId, stock, categoryId, createdAt, updatedAt, capsuleId, mainImageId, images } = product
+    const { 
+        id, 
+        active, 
+        capsuleId, 
+        categoryId, 
+        description, 
+        images, 
+        mainImageId, 
+        name, 
+        priceId, 
+        capsule,
+        price, 
+        sizes, 
+        stock, 
+        stripeId 
+        } = product
+
+    const mainImage  = await api.imageRouter.getImage.query({
+        id: mainImageId
+    })
+    const otherImages = await api.imageRouter.getImages.query({
+        imageIds: images.map((image) => image.imageId)
+    })
+
     // const prices = await api.price.getAllPrices.query()
     // const categories = await api.category.getAllCategories.query()
     // const capsules = await api.capsule.getAllCapsules.query()
@@ -26,7 +50,7 @@ const Product: React.FC<{ product: ProductWithImage }> = async ({ product }) => 
                         { 
                             images.length > 0 ?
                             
-                            images.map((image) => {
+                            otherImages.map((image) => {
                                 return (
                                     <Image key={image.id} src={image.url} width={100} height={100} alt={image.fileName} />
                                 )
@@ -48,12 +72,10 @@ const Product: React.FC<{ product: ProductWithImage }> = async ({ product }) => 
             </div>
             <div className='flex flex-col'>
                 {
-                    images.length > 0 ? 
-                    <Image src={images[0]?.url} width={500} height={500} alt={images[0]?.fileName ?? "no name"} />
-                    : <div>No Images</div>
-                        
+                    mainImage ?
+                    <Image src={mainImage.url} width={500} height={500} alt={ mainImage.fileName ?? "NO name for image" } />
+                    : <div>No Main Image</div>
                 }
-                
             </div>
         </div>
     )

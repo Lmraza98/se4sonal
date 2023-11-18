@@ -2,6 +2,7 @@ import { z } from "zod";
 
 import { createTRPCRouter, publicProcedure } from "@app/server/api/trpc";
 import { stripe } from "@app/server/stripe/client"
+import { createStripePrice } from '@app/server/stripe/price'
 
 export const priceRouter = createTRPCRouter({
     getAllPrices: publicProcedure
@@ -27,6 +28,7 @@ export const priceRouter = createTRPCRouter({
                     currency: 'usd',
                     product_data: {
                         name: input.description,
+
                     },
                 })
                 if (!stripePrice || !stripePrice.id) {

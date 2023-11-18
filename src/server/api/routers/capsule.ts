@@ -28,22 +28,22 @@ export const capsuleRouter = createTRPCRouter({
             })
             return capsule
         }),
-    deleteCategory: publicProcedure
+    deleteCapsule: publicProcedure
         .input(
             z.object({
                 id: z.number().min(1).max(100),
             })
         )
         .query( async ({ ctx, input }) => {
-            const category = await ctx.db.category.delete({
+            const capsule = await ctx.db.capsule.delete({
                 where: {
                     id: input.id
                 }
             })
-            if( !category ) {
-                throw new Error("Category not found")
+            if( !capsule ) {
+                throw new Error("Capsule not found")
             }
-            return category
+            return capsule
         })
 
 });
