@@ -4,9 +4,9 @@ import { createTRPCRouter, publicProcedure } from "@app/server/api/trpc";
 
 export const categoryRouter = createTRPCRouter({
     getCategories: publicProcedure
-        .query( async ({ ctx }) => {
+        .query(async ({ ctx }) => {
             const categories = await ctx.db.category.findMany({})
-            if ( !categories ) {
+            if (!categories) {
                 throw new Error("Categories not found")
             }
             return categories
@@ -18,7 +18,7 @@ export const categoryRouter = createTRPCRouter({
                 description: z.string().min(1).max(50)
             })
         )
-        .query( async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
             const category = await ctx.db.category.create({
                 data: {
                     name: input.name,
@@ -33,13 +33,13 @@ export const categoryRouter = createTRPCRouter({
                 id: z.number().min(1).max(100),
             })
         )
-        .query( async ({ ctx, input }) => {
+        .query(async ({ ctx, input }) => {
             const category = await ctx.db.category.delete({
                 where: {
                     id: input.id
                 }
             })
-            if( !category ) {
+            if (!category) {
                 throw new Error("Category not found")
             }
             return category
