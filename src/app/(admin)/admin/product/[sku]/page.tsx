@@ -15,6 +15,9 @@ export default function CreateProduct() {
     capsuleId: 0,
     mainImageId: 0,
     images: [],
+    active: true,
+    sizeIds: [],
+    stripeId: "",
   };
 
   const handleCategoryChange = (categoryId: number) => setCategoryId(categoryId);
