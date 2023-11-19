@@ -2,7 +2,7 @@
 const config = {
   parser: "@typescript-eslint/parser",
   parserOptions: {
-    project: true,
+    project: './tsconfig.json',
   },
   plugins: ["@typescript-eslint"],
   extends: [
@@ -25,10 +25,7 @@ const config = {
     ],
     "@typescript-eslint/no-unused-vars": ["warn", { argsIgnorePattern: "^_" }],
     "@typescript-eslint/no-misused-promises": [
-      2,
-      {
-        checksVoidReturn: { attributes: false },
-      },
+      2
     ],
   },
 };
