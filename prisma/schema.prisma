@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           Int      @id @default(autoincrement())
+  firstname    String
+  lastName     String
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Product {
+  id          Int            @id @default(autoincrement())
+  stripeId    String
+  name        String
+  description String
+  stock       Int?
+  categoryId  Int
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  capsuleId   Int
+  mainImageId Int            @unique
+  imageIds    Int[]
+  priceId     Int
+  sizeIds     Int[]
+  active      Boolean        @default(true)
+  price       Price          @relation("ProductToPrice", fields: [priceId], references: [id], map: "Product_Price_fkey")
+  capsule     Capsule        @relation("ProductToCapsule", fields: [capsuleId], references: [id], map: "Product_Capsule_fkey")
+  category    Category       @relation("ProductToCategory", fields: [categoryId], references: [id], map: "Product_Category_fkey")
+  sizes       Sizes[]        
+  mainImage   ProductImage   @relation("MainImage", fields: [mainImageId], references: [id])
+  images      ProductImage[] @relation("AdditionalImages")
+
+  @@index([name, capsuleId])
+}
+
+model ProductImage {
+  id        Int      @id @default(autoincrement())
+  imageId   Int
+  productId Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  Image     Image    @relation(fields: [imageId], references: [id])
+  Product   Product  @relation("AdditionalImages", fields: [productId], references: [id])
+  mainProduct Product? @relation("MainImage")
+
+  @@index([productId, imageId])
+}
+
+model Image {
+  id         Int       @id @default(autoincrement())
+  url        String
+  fileName   String
+  fileSize   Int
+  fileKey    String
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  ProductImages ProductImage[]
+
+  @@index([id])
+}
+
+
+model Capsule {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime
+  products    Product[]      @relation("ProductToCapsule")
+}
+
+model Size {
+  id          Int     @id @default(autoincrement())
+  name        String
+  description String
+  products    Sizes[]
+
+  @@index([name])
+}
+
+model Sizes {
+  productId Int
+  sizeId    Int
+
+  product Product @relation(fields: [productId], references: [id])
+  size    Size    @relation(fields: [sizeId], references: [id])
+
+  @@id([productId, sizeId])
+}
+
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  products    Product[]      @relation("ProductToCategory")
+
+  @@index([name])
+}
+
+model Price {
+  id          Int       @id @default(autoincrement())
+  stripeId    String
+  price       Float
+  description String
+  products    Product[]      @relation("ProductToPrice")
+}
+
+model OrdersTable {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  orderStatus String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model OrderItems {
+  id              Int      @id @default(autoincrement())
+  orderId         Int
+  productId       Int
+  quantity        Int
+  priceAtPurchase Float
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([orderId])
+  @@index([productId])
+}
+
+model PaymentInfoTable {
+  id             Int      @id @default(autoincrement())
+  userId         Int
+  cardNumber     String
+  cardHolderName String
+  expirationDate String
+  cvv            String
+  billingAddress String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model ShippingInfoTable {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  address   String
+  city      String
+  state     String
+  zip       String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
+}
+
+model InventoryLogTable {
+  id            Int      @id @default(autoincrement())
+  productId     Int
+  changeInStock Int
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([productId])
+}
+
+model Post {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String?
+  published Boolean  @default(false)
+  author    String
+  authorId  Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime
+
+  @@index([title])
+}
