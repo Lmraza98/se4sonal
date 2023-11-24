@@ -43,3 +43,5 @@ yarn-error.log*
 
 /postgresql
 *postgresql
+
+yarn.lock
