@@ -15,6 +15,8 @@ model User {
   passwordHash String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
+  cart         Cart?    // No need for @relation attribute here
+  cartId       Int?     // Add this line
 }
 
 model Product {
@@ -38,8 +40,22 @@ model Product {
   sizes       Sizes[]        
   mainImage   ProductImage   @relation("MainImage", fields: [mainImageId], references: [id])
   images      ProductImage[] @relation("AdditionalImages")
+  cartId      Int
+  carts       Cart[] @relation("ProductCart") // Changed to 'carts', a many-to-many relation
 
   @@index([name, capsuleId])
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+
+  products  Product[] @relation("ProductCart")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([userId])
 }
 
 model ProductImage {
@@ -58,6 +74,7 @@ model ProductImage {
 
 model Image {
   id         Int       @id @default(autoincrement())
+  name       String
   url        String
   fileName   String
   fileSize   Int
@@ -110,6 +127,7 @@ model Category {
 
 model Price {
   id          Int       @id @default(autoincrement())
+  name        String
   stripeId    String
   price       Float
   description String

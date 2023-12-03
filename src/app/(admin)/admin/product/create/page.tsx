@@ -9,7 +9,7 @@ export default async function CreateProductPage() {
   const categories = await api.categoryRouter.getCategories.query()
   const images = await api.imageRouter.getImages.query()
   const prices = await api.priceRouter.getAllPrices.query()
-  const sizes = await api.sizeRouter.getSizes.query()
+  const sizes = await api.sizeRouter.getAllSizes.query()
 
   return (
     <div>

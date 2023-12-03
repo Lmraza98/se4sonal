@@ -17,26 +17,30 @@ export const priceRouter = createTRPCRouter({
             z.object({
                 price: z.number().min(1).max(1000000000),
                 description: z.string().min(1).max(50),
+                name: z.string().min(1).max(50),
+                stripeId: z.string().min(1).max(50),
             }),
         )
-        .query(async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
             try {
-                const stripePrice = await stripe.prices.create({
-                    unit_amount: input.price,
-                    currency: "usd",
-                    product_data: {
-                        name: input.description,
-                    },
-                });
-                if (!stripePrice || !stripePrice.id) {
-                    throw new Error("Failed to create price in Stripe.");
-                }
+                // const stripePrice = await stripe.prices.create({
+                //     unit_amount: input.price,
+                //     currency: "usd",
+                //     product_data: {
+                //         name: input.description,
+                //     },
+                // });
+                // if (!stripePrice || !stripePrice.id) {
+                //     throw new Error("Failed to create price in Stripe.");
+                // }
                 const price = await ctx.db.price.create({
-                    data: {
-                        price: input.price,
-                        description: input.description,
-                        stripeId: stripePrice.id,
-                    },
+                   data: {
+                    description: input.description,
+                    stripeId: input.stripeId,
+                    price: input.price,
+                    name: input.name,
+
+                   }
                 });
                 return price;
             } catch (err) {

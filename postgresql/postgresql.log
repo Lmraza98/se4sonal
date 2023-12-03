@@ -1,0 +1,45 @@
+2023-11-24 12:39:26.826 EST [46830] LOG:  starting PostgreSQL 15.4 on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2023-11-24 12:39:26.831 EST [46830] LOG:  listening on IPv6 address "::1", port 1234
+2023-11-24 12:39:26.831 EST [46830] LOG:  listening on IPv4 address "127.0.0.1", port 1234
+2023-11-24 12:39:26.832 EST [46830] LOG:  listening on Unix socket "/tmp/.s.PGSQL.1234"
+2023-11-24 12:39:26.839 EST [46833] LOG:  database system was shut down at 2023-11-24 12:39:26 EST
+2023-11-24 12:39:26.842 EST [46830] LOG:  database system is ready to accept connections
+2023-11-24 12:44:26.833 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 12:46:05.256 EST [46831] LOG:  checkpoint complete: wrote 980 buffers (6.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=98.408 s, sync=0.012 s, total=98.423 s; sync files=317, longest=0.002 s, average=0.001 s; distance=4603 kB, estimate=4603 kB
+2023-11-24 12:49:21.342 EST [53432] ERROR:  relation "public.Product" does not exist at character 440
+2023-11-24 12:49:21.342 EST [53432] STATEMENT:  SELECT "public"."Product"."id", "public"."Product"."stripeId", "public"."Product"."name", "public"."Product"."description", "public"."Product"."stock", "public"."Product"."categoryId", "public"."Product"."createdAt", "public"."Product"."updatedAt", "public"."Product"."capsuleId", "public"."Product"."mainImageId", "public"."Product"."imageIds", "public"."Product"."priceId", "public"."Product"."sizeIds", "public"."Product"."active" FROM "public"."Product" WHERE 1=1 ORDER BY "public"."Product"."updatedAt" DESC OFFSET $1
+2023-11-24 12:49:39.977 EST [53691] LOG:  could not receive data from client: Connection reset by peer
+2023-11-24 12:54:26.258 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 12:54:39.920 EST [46831] LOG:  checkpoint complete: wrote 136 buffers (0.8%); 1 WAL file(s) added, 0 removed, 0 recycled; write=13.640 s, sync=0.007 s, total=13.662 s; sync files=131, longest=0.002 s, average=0.001 s; distance=811 kB, estimate=4224 kB
+2023-11-24 13:24:26.852 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 13:24:26.963 EST [46831] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.002 s, total=0.112 s; sync files=1, longest=0.002 s, average=0.002 s; distance=8 kB, estimate=3803 kB
+2023-11-24 13:28:30.091 EST [80436] LOG:  could not receive data from client: Connection reset by peer
+2023-11-24 13:29:26.960 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 13:29:38.142 EST [46831] LOG:  checkpoint complete: wrote 111 buffers (0.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=11.172 s, sync=0.008 s, total=11.183 s; sync files=126, longest=0.002 s, average=0.001 s; distance=655 kB, estimate=3488 kB
+2023-11-24 13:34:26.141 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 13:34:29.271 EST [46831] LOG:  checkpoint complete: wrote 32 buffers (0.2%); 0 WAL file(s) added, 0 removed, 0 recycled; write=3.123 s, sync=0.004 s, total=3.131 s; sync files=11, longest=0.002 s, average=0.001 s; distance=196 kB, estimate=3159 kB
+2023-11-24 14:29:26.084 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 14:29:26.188 EST [46831] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.101 s, sync=0.002 s, total=0.104 s; sync files=1, longest=0.002 s, average=0.002 s; distance=5 kB, estimate=2843 kB
+2023-11-24 15:14:26.414 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 15:14:26.633 EST [46831] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.212 s, sync=0.001 s, total=0.220 s; sync files=2, longest=0.001 s, average=0.001 s; distance=9 kB, estimate=2560 kB
+2023-11-24 15:29:26.601 EST [46831] LOG:  checkpoint starting: time
+2023-11-24 15:29:27.123 EST [46831] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.002 s, total=0.525 s; sync files=5, longest=0.002 s, average=0.001 s; distance=3 kB, estimate=2304 kB
+2023-11-30 10:21:48.101 EST [44623] LOG:  starting PostgreSQL 15.4 on aarch64-apple-darwin21.6.0, compiled by Apple clang version 14.0.0 (clang-1400.0.29.102), 64-bit
+2023-11-30 10:21:48.109 EST [44623] LOG:  listening on IPv6 address "::1", port 1234
+2023-11-30 10:21:48.109 EST [44623] LOG:  listening on IPv4 address "127.0.0.1", port 1234
+2023-11-30 10:21:48.110 EST [44623] LOG:  listening on Unix socket "/tmp/.s.PGSQL.1234"
+2023-11-30 10:21:48.129 EST [44626] LOG:  database system was interrupted; last known up at 2023-11-24 15:29:27 EST
+2023-11-30 10:21:48.421 EST [44626] LOG:  database system was not properly shut down; automatic recovery in progress
+2023-11-30 10:21:48.444 EST [44626] LOG:  redo starts at 0/1D84D80
+2023-11-30 10:21:48.444 EST [44626] LOG:  invalid record length at 0/1D84E68: wanted 24, got 0
+2023-11-30 10:21:48.444 EST [44626] LOG:  redo done at 0/1D84E30 system usage: CPU: user: 0.00 s, system: 0.00 s, elapsed: 0.00 s
+2023-11-30 10:21:48.448 EST [44624] LOG:  checkpoint starting: end-of-recovery immediate wait
+2023-11-30 10:21:48.457 EST [44624] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.010 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB
+2023-11-30 10:21:48.463 EST [44623] LOG:  database system is ready to accept connections
+2023-11-30 12:06:48.493 EST [44624] LOG:  checkpoint starting: time
+2023-11-30 12:06:53.568 EST [44624] LOG:  checkpoint complete: wrote 51 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=5.059 s, sync=0.012 s, total=5.075 s; sync files=39, longest=0.002 s, average=0.001 s; distance=258 kB, estimate=258 kB
+2023-11-30 12:12:06.860 EST [16149] LOG:  could not receive data from client: Connection reset by peer
+2023-11-30 12:16:48.556 EST [44624] LOG:  checkpoint starting: time
+2023-11-30 12:16:53.035 EST [44624] LOG:  checkpoint complete: wrote 45 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=4.472 s, sync=0.006 s, total=4.480 s; sync files=34, longest=0.002 s, average=0.001 s; distance=235 kB, estimate=256 kB
+2023-11-30 12:41:48.015 EST [44624] LOG:  checkpoint starting: time
+2023-11-30 12:41:48.633 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.610 s, sync=0.003 s, total=0.618 s; sync files=6, longest=0.002 s, average=0.001 s; distance=38 kB, estimate=234 kB

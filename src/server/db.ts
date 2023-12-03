@@ -14,6 +14,9 @@ export const db =
       env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
       datasourceUrl: env.DATABASE_URL
   });
-
+const cart = await db.cart.findUnique({ 
+  where: { id: 0 } 
+})
+console.log()
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = db;
 

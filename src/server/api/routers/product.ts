@@ -21,6 +21,7 @@ export const productRouter = createTRPCRouter({
         description: z.string().min(1).max(50),
         mainImageId: z.number(),
         imageIds: z.array(z.number()),
+        cartId: z.number().optional(),
         categoryId: z.number(),
         stock: z.number(),
         capsuleId: z.number(),
@@ -34,6 +35,7 @@ export const productRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       const productData = {
         category: input.categoryId,
+        cartId: input.cartId,
         createdAt: new Date(),
         updatedAt: new Date(),
         name: input.name,
@@ -46,22 +48,15 @@ export const productRouter = createTRPCRouter({
         stripeId: input.stripeId,
         active: input.active,
         imageIds: input.imageIds,
+        sizes: input.sizeIds ? {
+          connect: input.sizeIds.map(id => ({ id })),
+        } : undefined,
         mainImage: {
           connect: { id: input.mainImageId },
         },
         images: {
           connect: input.imageIds.map((id) => ({ id })),
         },
-        sizes: input.sizeIds
-          ? {
-            create: input.sizeIds.map(({ productId, sizeId }) => ({
-              productId,
-              size: {
-                connect: { id: sizeId },
-              },
-            })),
-          }
-          : undefined,
         capsule: input.capsuleId
           ? {
             connect: { id: input.capsuleId },
@@ -77,6 +72,14 @@ export const productRouter = createTRPCRouter({
 
       const product = ctx.db.product.create({
         data: productData,
+        include: {
+          images: true,
+          sizes: true,
+          capsule: true,
+          price: true,
+          category: true,
+          mainImage: true,
+        },
       });
       return product;
     }),
@@ -87,7 +90,7 @@ export const productRouter = createTRPCRouter({
       }),
     )
     .query(async ({ ctx, input }) => {
-      const product = ctx.db.product.findUnique({
+      const product = await ctx.db.product.findUnique({
         where: {
           id: input.id,
         },
@@ -96,7 +99,7 @@ export const productRouter = createTRPCRouter({
           sizes: true,
           capsule: true,
           price: true,
-          
+        
         },
       });
       if (!product) {

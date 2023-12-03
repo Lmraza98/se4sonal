@@ -6,6 +6,7 @@ import { priceRouter } from "~/server/api/routers/price";
 import { sizeRouter } from "~/server/api/routers/size";
 import { stripeRouter } from "~/server/api/routers/stripe";
 import { createTRPCRouter } from "~/server/api/trpc";
+import { cartRouter } from "~/server/api/routers/cart";
 
 /**
  * This is the primary router for your server.
@@ -20,6 +21,7 @@ export const appRouter = createTRPCRouter({
   priceRouter: priceRouter,
   sizeRouter: sizeRouter,
   stripeRouter: stripeRouter,
+  cartRouter: cartRouter,
 });
 
 // export type definition of API
