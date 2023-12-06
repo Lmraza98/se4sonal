@@ -71,7 +71,7 @@ export default function CreateProductPage() {
       productSizeIds: [],
       priceId: -1,
       capsuleId: -1,
-      categoryId: -1,
+      categoryId: [],
       mainImageId: -1,
       imageIds: [],
     },

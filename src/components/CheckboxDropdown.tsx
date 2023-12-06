@@ -21,6 +21,7 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
   onChange,
   onEditItem,
 }: CheckboxDropdownProps<T>) => {
+  console.log("Value: ", value)
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const checkboxRef = useRef<HTMLUListElement>(null);
 
@@ -31,7 +32,7 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
     const updatedSelectedItems = isChecked
       ? [...value, item] // Add item
       : value.filter((selectedItem) => selectedItem.id !== item.id); // Remove item
-
+    console.log("Updated Selected Items: ", updatedSelectedItems)
     onChange(updatedSelectedItems);
   };
 
@@ -78,7 +79,9 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
                   type="checkbox"
                   id={item.id.toString()}
                   name={item.name}
-                  checked={value.some(v => v.id === item.id)}
+                  checked={
+                    value.length > 0 ? value.some(v => v.id === item.id) : false
+                  }
                   onChange={(e) => handleChange(e, item)}
                   className="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
                 />

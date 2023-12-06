@@ -4,10 +4,10 @@ import { api } from "~/trpc/react";
 import type { Size, Price, Capsule, Category, Image } from "@prisma/client";
 
 interface ProductDataContextProps {
-    updateSize: (id: number, name: string, description: string) => void;
-    updatePrice: (id: number, name: string, description: string, price: number, stripeId: string) => void;
-    updateCapsule: (id: number, name: string, description: string) => void;
-    updateCategory: (id: number, name: string, description: string) => void;
+    updateSize: (size: Size) => void;
+    updatePrice: (price: Price) => void;
+    updateCapsule: (capsule: Omit<Capsule, 'createdAt'|'updatedAt'>) => void;
+    updateCategory: (category: Category) => void;
     updateImage: (id: number, url: string, fileName: string, fileSize: number, fileKey: string) => void;
     deleteSize: (id: number) =>  void;
     deletePrice: (id: number) =>  void;
@@ -140,26 +140,26 @@ export const ProductDataProvider: React.FC<ProductDataProviderProps> = ({ childr
     }, [deleteImageMutate]);
 
     const { mutate: updateSizeMutate } = api.sizeRouter.updateSize.useMutation();
-    const updateSize = useCallback((id: number, name: string, description: string) => {
-        updateSizeMutate({ id, name, description });
+    const updateSize = useCallback((size:Size) => {
+        updateSizeMutate({ ...size });
         // Additional logic if needed
     }, [updateSizeMutate]);
 
     const { mutate: updatePriceMutate } = api.priceRouter.updatePrice.useMutation();
-    const updatePrice = useCallback((id: number, name: string, description: string, price: number, stripeId: string) => {
-        updatePriceMutate({ id, name, description, price, stripeId });
+    const updatePrice = useCallback((price:Price) => {
+        updatePriceMutate({ ...price });
         // Additional logic if needed
     }, [updatePriceMutate]);
 
     const { mutate: updateCapsuleMutate } = api.capsuleRouter.updateCapsule.useMutation();
-    const updateCapsule = useCallback((id: number, name: string, description: string) => {
-        updateCapsuleMutate({ id, name, description });
+    const updateCapsule = useCallback((capsule: Omit<Capsule, 'createdAt'|'updatedAt'>) => {
+        updateCapsuleMutate({ ...capsule });
         // Additional logic if needed
     }, [updateCapsuleMutate]);
 
     const { mutate: updateCategoryMutate } = api.categoryRouter.updateCategory.useMutation();
-    const updateCategory = useCallback((id: number, name: string, description: string) => {
-        updateCategoryMutate({ id, name, description });
+    const updateCategory = useCallback((category: Category) => {
+        updateCategoryMutate({ ...category });
         // Additional logic if needed
     }, [updateCategoryMutate]);
 

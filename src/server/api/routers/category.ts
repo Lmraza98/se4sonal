@@ -14,7 +14,8 @@ export const categoryRouter = createTRPCRouter({
     createCategory: publicProcedure
         .input(
             z.object({
-                name: z.string().min(1).max(50)
+                name: z.string().min(1).max(50),
+                description: z.string().min(1).max(50)
             })
         )
         .mutation(async ({ ctx, input }) => {
@@ -22,7 +23,7 @@ export const categoryRouter = createTRPCRouter({
             const category = await ctx.db.category.create({
                 data: {
                     name: input.name,
-                    description: ''
+                    description: input.description
                 }
             })
             return category

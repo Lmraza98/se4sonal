@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, ReactNode } from "react";
 import { api } from "~/trpc/react";
-
 import { CheckboxDropdown } from "~/components/CheckboxDropdown";
 import { Modal } from "~/components/Modal";
 import type { Size, Price, Capsule, Category, Image } from "@prisma/client";
@@ -21,39 +20,79 @@ interface CreateProductFormProps {
     stock: number;
     active: boolean;
     productSizeIds: never[];
-    priceId: number;
-    capsuleId: number;
-    categoryId: number;
+    priceIds: never[];
+    capsuleId: Omit<Capsule, 'updatedAt'|'createdAt'>[];
+    categoryId: Category[];
     mainImageId: number;
     imageIds: never[];
-}, unknown>
+  }, unknown>
 }
 
 export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   form,
   sizes,
+  prices,
+  categories,
+  capsules
 }) => {
-  const [isModalOpen, setModalOpen] = useState<boolean>(false);
+  const [isSizeModalOpen, setSizeModalOpen] = useState<boolean>(false);
+  const [isPriceModalOpen, setPriceModalOpen] = useState<boolean>(false);
+  const [isCategoryModalOpen, setCategoryModalOpen] = useState<boolean>(false);
+  const [isCapsuleModalOpen, setCapsuleModalOpen] = useState<boolean>(false);
+
   const [editSize, setEditSize] = useState<Size>();
+  const [editPrice, setEditPrice] = useState<Price>();
+  const [editCategory, setEditCategory] = useState<Category>();
+  const [editCapsule, setEditCapsule] = useState<Omit<Capsule, 'updatedAt'|'createdAt'>>();
   const productData = useProductData()
 
   useEffect(() => {
     console.log("editSize", editSize);
     if (editSize) {
-      setModalOpen(true);
+      setSizeModalOpen(true);
     }
-  },[editSize])
-  
+  }, [editSize])
+  useEffect(() => {
+    if (editPrice) {
+      setPriceModalOpen(true);
+    }
+  }, [editPrice])
 
-  if(!productData) {
+  useEffect(() => {
+    if (editCategory) {
+      setCategoryModalOpen(true);
+    }
+  }, [editCategory])
+
+  useEffect(() => {
+    if (editCapsule) {
+      setCapsuleModalOpen(true);
+    }
+  }, [editCapsule])
+
+  if (!productData) {
     return null
   }
 
-  const { 
-    deleteSize, 
+  const {
+    deleteSize,
     refreshSizes,
     updateSize,
+    deletePrice,
+    refreshPrices,
+    updatePrice,
+    deleteCategory,
+    refreshCategories,
+    updateCategory,
+    deleteCapsule,
+    refreshCapsules,
+    updateCapsule,
   } = productData
+
+  const createSize = api.sizeRouter.createSize.useMutation();
+  const createPrice = api.priceRouter.createPrice.useMutation();
+  const createCategory = api.categoryRouter.createCategory.useMutation();
+  const createCapsule = api.capsuleRouter.createCapsule.useMutation()
 
   return (
     <div className="h-full">
@@ -158,67 +197,90 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
                       onChange={(selectedItems) =>
                         field.handleChange(selectedItems as unknown as never[])
                       } // Pass the onChange handler from the form field
-                      onEditItem={(item:Size)=> {
+                      onEditItem={(item: Size) => {
                         console.log("Edit Item: ", item)
                         // const changeSize = api.sizeRouter.updateSize.useMutation()
                         setEditSize(item);
-                  
-                        // changeSize.mutate(size)
                       }}
                     />
-                    <CreateSizeAction 
-                      size={editSize ?? { id: -1, name: "", description: "" }} 
-                     // id={editSize?.id} 
-                      // name={editSize?.name} 
-                      // description={editSize?.description} 
-                      isModalOpen={isModalOpen} 
-                      setModalOpen={setModalOpen} 
-                      handleSizeChange={async (updatedSize:Size) => {
-                        const updatedSizes = sizes?.map(size => 
+                    <CreateItem
+                      <Size>
+                      name='Size'
+                      item={editSize ?? { id: -1, name: "", description: "" }}
+                      createItem={({ name, description }) => createSize.mutate({ name, description })}
+                      deleteItem={deleteSize}
+                      refreshItem={refreshSizes}
+                      isModalOpen={isSizeModalOpen}
+                      setModalOpen={setSizeModalOpen}
+                      updateItem={(size: Size) => updateSize(size)}
+                      handleChange={async (updatedSize: Size) => {
+                        const updatedSizes = sizes?.map(size =>
                           size.id === updatedSize.id ? updatedSize : size
                         );
                         // Update form state here
-                        field.handleChange(updatedSizes as unknown as never[]  ?? [] as unknown as never[]);
+                        field.handleChange(updatedSizes as unknown as never[] ?? [] as unknown as never[]);
                         await refreshSizes()
                       }
-                    } // Pass the callback to CreateSizeAction
-                      deleteItem={deleteSize}
-                      setEditSize={setEditSize}
+                      } // Pass the callback to CreateItem
+
+                      setEditItem={setEditSize}
                     />
                   </div>
-                  
+
                   {field.state.value !== undefined ? (
-                    <SelectedSizeDisplay
+                    <DisplaySelectedItems<Size>
                       selectedItems={field.state.value}
-                      onRemoveItem={(id) => {
-                        const newSelectedItems = field.state.value.filter(
-                          (size: Size) => size.id !== id,
-                        );
-                        field.handleChange(
-                          newSelectedItems as unknown as never[],
-                        );
-                      }}
+                      updateItems={(updatedItems) => field.handleChange(updatedItems as unknown as never[])}
                     />
-                  ) : null}
-                 
+                    // <SelectedSizeDisplay
+
+                    // />
+                  ) : <div>no sizes</div>}
+
                 </div>
               )}
             />
             <form.Field
-              name="priceId"
+              name="priceIds"
               // eslint-disable-next-line react/no-children-prop
               children={(field) => (
                 <div>
                   <label className="mb-2 block text-sm font-bold text-gray-700">
                     Price
                   </label>
-                  <input
-                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                  />
+                  <div className='flex flex-row gap-3'>
+                    <CreateItem
+                      <Price>
+                      name='Price'
+                      item={editPrice ?? { id: -1, name: "", description: "", price: 0, stripeId: "" }}
+                      createItem={({ name, description, stripeId, price }) => createPrice.mutate({ name, description, stripeId, price })}
+                      deleteItem={deletePrice}
+                      refreshItem={refreshPrices}
+                      isModalOpen={isPriceModalOpen}
+                      setModalOpen={setPriceModalOpen}
+                      updateItem={(price: Price) => updatePrice(price)}
+                      handleChange={async (updatedPrice: Price) => {
+                        const updatedPrices = prices?.map(price =>
+                          price.id === updatedPrice.id ? updatedPrice : price
+                        );
+                        // Update form state here
+                        field.handleChange(updatedPrices as unknown as never[] ?? [] as unknown as never[]);
+                        await refreshPrices()
+                      }
+                      } // Pass the callback to CreateItem
+                      setEditItem={setEditPrice}
+                    />
+                  </div>
+                  {field.state.value !== undefined ? (
+                    <DisplaySelectedItems<Size>
+                      selectedItems={field.state.value}
+                      updateItems={(updatedItems) => field.handleChange(updatedItems as unknown as never[])}
+                    />
+                    // <SelectedSizeDisplay
+
+                    // />
+                  ) : null}
+
                 </div>
               )}
             />
@@ -228,15 +290,56 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
               children={(field) => (
                 <div>
                   <label className="mb-2 block text-sm font-bold text-gray-700">
-                    Category
+                    Categories
                   </label>
-                  <input
-                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
-                  />
+                  <div className='flex flex-row gap-3'>
+                    <CheckboxDropdown<Category>
+                      name='Categories'
+                      items={categories ?? []} // Pass your size items here
+                      value={field.state.value ?? []} // Pass the current value from the form field
+                      onChange={(selectedItems) =>
+                        field.handleChange(selectedItems)
+                      } // Pass the onChange handler from the form field
+                      onEditItem={(item: Category) => {
+                        console.log("Edit Item: ", item)
+                        // const changeSize = api.sizeRouter.updateSize.useMutation()
+                        setEditCategory(item);
+                      }}
+                    />
+                    <CreateItem
+                      <Category>
+                      name='Categories'
+                      item={editCategory ?? { id: -1, name: "", description: "" }}
+                      createItem={({ name, description }) => createCategory.mutate({ name, description })}
+                      deleteItem={deleteCategory}
+                      refreshItem={refreshCategories}
+                      isModalOpen={isCategoryModalOpen}
+                      setModalOpen={setCategoryModalOpen}
+                      updateItem={(category: Category) => updateCategory(category)}
+                      handleChange={async (updatedCategory: Category) => {
+                        const updatedCategories = categories?.map(category =>
+                          category.id === updatedCategory.id ? updatedCategory : category
+                        );
+                        // Update form state here
+                        field.handleChange(updatedCategories as unknown as never[] ?? [] as unknown as never[]);
+                        await refreshCategories()
+                      }
+                      } // Pass the callback to CreateItem
+
+                      setEditItem={setEditCategory}
+                    />
+                  </div>
+
+                  {field.state.value && field.state.value.length > 0 ? (
+                    <DisplaySelectedItems<Category>
+                      selectedItems={field.state.value}
+                      updateItems={(updatedItems) => field.handleChange(updatedItems as unknown as never[])}
+                    />
+                    // <SelectedSizeDisplay
+
+                    // />
+                  ) : <div>no categories selected </div>}
+
                 </div>
               )}
             />
@@ -245,17 +348,58 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
               // eslint-disable-next-line react/no-children-prop
               children={(field) => (
                 <div>
-                  <label className="mb-2 block text-sm font-bold text-gray-700">
-                    Capsule
-                  </label>
-                  <input
-                    className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
-                    name={field.name}
-                    value={field.state.value}
-                    onBlur={field.handleBlur}
-                    onChange={(e) => field.handleChange(Number(e.target.value))}
+                <label className="mb-2 block text-sm font-bold text-gray-700">
+                  Capsule
+                </label>
+                <div className='flex flex-row gap-3'>
+                  <CheckboxDropdown<Omit<Capsule, 'updatedAt'|'createdAt'>>
+                    name='Capsules'
+                    items={capsules ?? []} // Pass your size items here
+                    value={field.state.value ?? []} // Pass the current value from the form field
+                    onChange={(selectedItems) =>
+                      field.handleChange(selectedItems)
+                    } // Pass the onChange handler from the form field
+                    onEditItem={(item: Omit<Capsule, 'updatedAt'|'createdAt'>) => {
+                      console.log("Edit Capsule: ", item)
+                      // const changeSize = api.sizeRouter.updateSize.useMutation()
+                      setEditCapsule(item);
+                    }}
+                  />
+                  <CreateItem
+                    <Omit<Capsule,'updatedAt'|'createdAt'>>
+                    name='Capsules'
+                    item={editCapsule ?? { id: -1, name: "", description: "" }}
+                    createItem={({ name, description }) => createCapsule.mutate({ name, description })}
+                    deleteItem={deleteCapsule}
+                    refreshItem={refreshCapsules}
+                    isModalOpen={isCapsuleModalOpen}
+                    setModalOpen={setCapsuleModalOpen}
+                    updateItem={(capsule: Omit<Capsule, 'createdAt'|'updatedAt'>) => updateCapsule(capsule)}
+                    handleChange={async (updatedCapsule: Omit<Capsule, 'updatedAt'|'createdAt'>) => {
+                      const updatedCapsules = capsules?.map(capsule =>
+                        capsule.id === updatedCapsule.id ? updatedCapsule : capsule
+                      );
+                      // Update form state here
+                      field.handleChange(updatedCapsules as unknown as never[] ?? [] as unknown as never[]);
+                      await refreshCapsules()
+                    }
+                    } // Pass the callback to CreateItem
+
+                    setEditItem={setEditCapsule}
                   />
                 </div>
+
+                {field.state.value && field.state.value.length > 0 ? (
+                  <DisplaySelectedItems<Omit<Capsule, 'updatedAt'|'createdAt'>>
+                    selectedItems={field.state.value}
+                    updateItems={(updatedItems) => field.handleChange(updatedItems as unknown as never[])}
+                  />
+                  // <SelectedSizeDisplay
+
+                  // />
+                ) : <div>no categories selected </div>}
+
+              </div>
               )}
             />
             <form.Field
@@ -305,32 +449,33 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
 interface Item {
   id: number;
   name: string;
+  description: string | null;
 }
 
-interface SelectedItemDisplayProps<T extends Item> {
+interface DisplaySelectedItemsProps<T extends Item> {
   selectedItems: T[];
-  onRemoveItem: (id: number) => void;
+  updateItems: (updatedItems: T[]) => void; // Generic function to update items
 }
 
-const SelectedSizeDisplay: React.FC<SelectedItemDisplayProps<Size>> = ({
+const DisplaySelectedItems = <T extends Item>({
   selectedItems,
-  onRemoveItem,
-}) => {
-  // console.log("selectedItems", selectedItems)
-  React.useEffect(() => {
-    console.log("selectedItems", selectedItems);
-  }, [selectedItems]);
-  // const [ selected, setSelected ] = React.useState<Size[] | undefined>(selectedItems ?? [])
+  updateItems,
+}: DisplaySelectedItemsProps<T>) => {
+  const handleRemoveItem = (id: number) => {
+    const newSelectedItems = selectedItems.filter((item) => item.id !== id);
+    updateItems(newSelectedItems);
+  };
+
   return (
     <div className="mt-2 flex flex-wrap">
-      {selectedItems.map((item: Size) => (
+      {selectedItems.map((item) => (
         <div
           key={item.id}
           className="m-1 flex items-center rounded bg-blue-100 p-1"
         >
           <span className="text-sm text-gray-700">{item.name}</span>
           <button
-            onClick={() => onRemoveItem(item.id)}
+            onClick={() => handleRemoveItem(item.id)}
             className="ml-2 text-blue-500 hover:text-blue-700"
           >
             x
@@ -340,51 +485,41 @@ const SelectedSizeDisplay: React.FC<SelectedItemDisplayProps<Size>> = ({
     </div>
   );
 };
-interface SizeFormValues {
-  size: Size;
+
+
+interface CreateItemProps<T extends Item> {
+  name: string;
+  item: T;
+  createItem: (item: Omit<T, 'id'>) => void;
+  updateItem: (item: T) => void;
+  deleteItem: (id: number) => void;
+  refreshItem: () => Promise<void> | void | null;
   isModalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  handleSizeChange: (updatedSize:Size) => void; // New callback prop
-  deleteItem: (id: number) => void;
-  setEditSize: React.Dispatch<React.SetStateAction<Size | undefined>>;
+  handleChange: (update: T) => void; // New callback prop
+  setEditItem: React.Dispatch<React.SetStateAction<T | undefined>>;
 }
 // const [isModalOpen, setModalOpen] = useState<boolean>(false);
 
 
-const CreateSizeAction: React.FC<SizeFormValues> = ({ size, isModalOpen, setModalOpen, handleSizeChange, deleteItem, setEditSize }) => {
-  // const router = useRouter()
+function CreateItem<T extends Item>({
+  name, item, createItem, updateItem, deleteItem, refreshItem, isModalOpen, setModalOpen, handleChange, setEditItem
+}: CreateItemProps<T>) {
 
-  const { updateSize, refreshSizes } = useProductData()
-  
-  const createSize = api.sizeRouter.createSize.useMutation();
-  // const updateSize = api.sizeRouter.updateSize.useMutation()
+  const [form, setForm] = useState<T>(item);
 
-  const [form, setForm] = useState<{
-    id: number;
-    name: string;
-    description: string | null;
-  }>(size);
-
-  console.log("form", form)
   useEffect(() => {
-    setForm(size ?? { id: -1, name: "", description: "" });
-  }, [size]);
-
-  // useEffect(() => {
-  //   setForm({ 
-  //     id: id ?? -1, 
-  //     name: name ?? "",  // Ensuring name is always a string
-  //     description: description ?? ""
-  //   });
-  // }, [id, name, description]);
+    console.log("item", item);
+    setForm(item);
+  }, [item]);
 
   const handleSubmit = async () => {
     if (form.id !== undefined && form.id !== -1) {
       if (form.name) {
         // Updating an existing size
-        updateSize(form.id, form.name, form.description ?? "");
-        await refreshSizes()
-        handleSizeChange(form)
+        updateItem(form);
+        await refreshItem()
+        handleChange(form)
         setModalOpen(false)
       } else {
         // Error handling for missing name field
@@ -393,8 +528,8 @@ const CreateSizeAction: React.FC<SizeFormValues> = ({ size, isModalOpen, setModa
     } else {
       // Creating a new size
       if (form.name) {
-        const newSize = createSize.mutate({ name: form.name, description: form.description });
-        await refreshSizes()
+        const newSize = createItem(form);
+        await refreshItem()
         setModalOpen(false)
       } else {
         // Error handling for missing name field
@@ -406,124 +541,71 @@ const CreateSizeAction: React.FC<SizeFormValues> = ({ size, isModalOpen, setModa
 
   return (
     <div>
-     <CreateItemModal
-        <Size>
-        name='Size'
-        formData={
-          {
-            id: form?.id ?? -1,
-            name: form?.name ?? "",
-            description: form?.description ?? ""
-          }
-        }
-        setFormData={setForm}
-        isModalOpen={isModalOpen}
-        setModalOpen={setModalOpen}
-        handleSubmit={handleSubmit}
-        closeModal={() => {
-          setModalOpen(false)
-          setEditSize(undefined)
-        }}
-     >
-        <div className="flex flex-col gap-4">
-          <div>
-            <label className="mb-2 block text-sm font-bold text-gray-700">
-              Name
-            </label>
-            <input
-              name={form?.name ? form.name : ''}
-              value={form?.name ? form.name : ''}
-              // onBlur={field.handleBlur}
-              onChange={(e) => setForm({ ...form, name: e.target.value })}
-            />
-          </div>
-          <div>
-            <label className="mb-2 block text-sm font-bold text-gray-700">
-              Description
-            </label>
-            <textarea
-                  className="h-32 w-full resize-none rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
-                  name={"description"}
-                  value={form?.description ? form?.description : ''}
-                  // onBlur={field.handleBlur}
-                  onChange={(e) =>
-                    setForm({ ...form, description: e.target.value })
-                  }
-                />
-          </div>
-          <div>
-            <button
-              type='button'
-              onClick={handleSubmit}
-              className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
-            >
-            {form?.id && form?.id !== -1 ? "Update Size" : "Create Size"}
-            </button>
-            <button
-              type='button'
-              onClick={() => {
-                deleteItem(form.id)
-                setModalOpen(false)
-              }}
-              className="mt-4 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
+      <div>
+        <button
+          type="button"
+          onClick={() => setModalOpen(true)}
+          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+        >
+          {`Create ${name}`}
+        </button>
+        <Modal
+          id={name}
+          title={form.id !== -1 ? "Edit Item" : "Create Item"}
+          isOpen={isModalOpen}
+          onClose={() => {
+            setForm({ ...form, id: -1, name: "", description: "" } as T);
+            setModalOpen(false)
+          }}
+        >
+          <div className="flex flex-col gap-4">
+            <div>
+              <label className="mb-2 block text-sm font-bold text-gray-700">
+                Name
+              </label>
+              <input
+                name={form?.name ? form.name : ''}
+                value={form?.name ? form.name : ''}
+                // onBlur={field.handleBlur}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-bold text-gray-700">
+                Description
+              </label>
+              <textarea
+                className="h-32 w-full resize-none rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none"
+                name={"description"}
+                value={form?.description ? form?.description : ''}
+                // onBlur={field.handleBlur}
+                onChange={(e) =>
+                  setForm({ ...form, description: e.target.value })
+                }
+              />
+            </div>
+            <div>
+              <button
+                type='button'
+                onClick={handleSubmit}
+                className="mt-4 rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+              >
+                {form?.id && form?.id !== -1 ? `Update ${name}` : `Create ${name}`}
+              </button>
+              <button
+                type='button'
+                onClick={() => {
+                  deleteItem(form.id)
+                  setModalOpen(false)
+                }}
+                className="mt-4 rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-opacity-50"
               >
                 Delete Size
               </button>
+            </div>
           </div>
-          
-        
-        </div>
-        </CreateItemModal>
+        </Modal>
+      </div>
     </div>
   );
-};
-
-interface FormData { 
-  id: number | undefined;
-  name: string;
-  description: string | null | undefined;
 }
-
-interface CreateOrUpdateProps<T extends FormData> {
-  name: string
-  formData: T;
-  setFormData: (data: T) => void;
-  isModalOpen: boolean;
-  setModalOpen: (isOpen: boolean) => void;
-  handleSubmit: () => void;
-  children: ReactNode;
-  closeModal: () => void;
-}
-
-function CreateItemModal<T extends FormData>({ name, formData, setFormData, isModalOpen, setModalOpen, handleSubmit, children, closeModal }: CreateOrUpdateProps<T>) {
-  console.log("formData", formData)
-  return (
-    <div>
-      <button
-        type="button"
-        onClick={() => setModalOpen(true)}
-        className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
-      >
-        {`Create ${name}`}
-      </button>
-      <Modal
-        title={formData.id !== -1 ? "Edit Item" : "Create Item"}
-        isOpen={isModalOpen}
-        onClose={() => {
-          setFormData({ ...formData, id: -1, name: "", description: "" } as T);
-          closeModal()
-        }}
-      >
-        {children}
-      </Modal>
-    </div>
-  );
-};
-interface SizeFormValues {
-  id?: number;
-  name?: string | undefined; 
-  description?: string | null | undefined;
-  isModalOpen: boolean;
-  setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}
-// const [isModalOpen, setModalOpen] = useState<boolean>(false);
