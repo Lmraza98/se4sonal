@@ -19,29 +19,45 @@ model User {
   cartId       Int?     // Add this line
 }
 
+model PurchaseOrder {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  orderStatus String
+  products    Product[] 
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([userId])
+}
+
 model Product {
   id          Int            @id @default(autoincrement())
   stripeId    String
   name        String
   description String
   stock       Int?
-  categoryId  Int
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
-  capsuleId   Int
-  mainImageId Int            @unique
-  imageIds    Int[]
-  priceId     Int
-  sizeIds     Int[]
   active      Boolean        @default(true)
+  // size        ProductSize    @relation(fields: [sizeId], references: [id], map: "Product_Size_fkey")
+  // size        ProductSize    @relation(fields: [sizeId], references: [id], map: "Product_Size_fkey")
+  purchaseOrdersIds Int[]
+  puchaseOrders PurchaseOrder[] 
+  productSizesIds     Int[]
+  sizes       ProductSize[]  
+  priceId     Int    
   price       Price          @relation("ProductToPrice", fields: [priceId], references: [id], map: "Product_Price_fkey")
+  capsuleId   Int
   capsule     Capsule        @relation("ProductToCapsule", fields: [capsuleId], references: [id], map: "Product_Capsule_fkey")
+  categoryId  Int
   category    Category       @relation("ProductToCategory", fields: [categoryId], references: [id], map: "Product_Category_fkey")
-  sizes       Sizes[]        
+  mainImageId Int            @unique
   mainImage   ProductImage   @relation("MainImage", fields: [mainImageId], references: [id])
+  imageIds    Int[]
   images      ProductImage[] @relation("AdditionalImages")
-  cartId      Int
-  carts       Cart[] @relation("ProductCart") // Changed to 'carts', a many-to-many relation
+  cartId      Int?
+  cart       Cart?          @relation("ProductCart", fields: [cartId], references: [id], map: "Product_Cart_fkey")
+  // carts       Cart[] @relation("ProductCart") // Changed to 'carts', a many-to-many relation
 
   @@index([name, capsuleId])
 }
@@ -100,20 +116,21 @@ model Capsule {
 model Size {
   id          Int     @id @default(autoincrement())
   name        String
-  description String
-  products    Sizes[]
+  description String?
+  productSize ProductSize[]
 
   @@index([name])
 }
 
-model Sizes {
+model ProductSize {
+  id        Int      @id @default(autoincrement())
   productId Int
-  sizeId    Int
+  sizeId    Int   
 
   product Product @relation(fields: [productId], references: [id])
   size    Size    @relation(fields: [sizeId], references: [id])
 
-  @@id([productId, sizeId])
+  // @@id([productId, sizeId])
 }
 
 model Category {

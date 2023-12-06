@@ -1,6 +1,6 @@
 
 import React from 'react'
-import { Navigation } from '~/components/navigation/store-nav'
+import { Navigation } from '~/components/navigation/StoreNav'
 // import { api } from "~/trpc/server";
 export default async function Home() {
   

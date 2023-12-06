@@ -55,4 +55,22 @@ export const priceRouter = createTRPCRouter({
                 }
             }
         }),
+
+    deletePrice: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            const price = await ctx.db.price.delete({
+                where: {
+                    id: input.id,
+                },
+            });
+            if (!price) {
+                throw new Error("Price not found");
+            }
+            return price;
+        }),
 });

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Logo } from '../logo'
+import { Logo } from '../Logo'
 
 const Date:React.FC = () => {
     return (

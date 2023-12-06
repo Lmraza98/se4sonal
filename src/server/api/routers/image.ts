@@ -31,21 +31,22 @@ export const imageRouter = createTRPCRouter({
     createImage: publicProcedure
         .input(
             z.object({
+                name: z.string().min(1).max(50),
                 url: z.string().min(1).max(50),
                 fileName: z.string().min(1).max(50),
                 fileSize: z.number().min(1).max(1000000000),
                 fileKey: z.string().min(1).max(50),
-                productId: z.number().min(1).max(100),
             }),
         )
-        .query(async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
             const newImage = await ctx.db.image.create({
                 data: {
-                    url: input.url,
+                    fileKey: input.fileKey,
                     fileName: input.fileName,
                     fileSize: input.fileSize,
-                    fileKey: input.fileKey,
-                },
+                    url: input.url,
+                    name: input.name,
+                }
             });
 
             return newImage;
@@ -56,7 +57,7 @@ export const imageRouter = createTRPCRouter({
                 id: z.number().min(1).max(100),
             }),
         )
-        .query(async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
             const image = await ctx.db.image.delete({
                 where: {
                     id: input.id,
@@ -67,9 +68,31 @@ export const imageRouter = createTRPCRouter({
             }
             return image;
         }),
-    getAllProducts: publicProcedure.query(async ({ ctx }) => {
-        const products = await ctx.db.product.findMany();
-
-        return products;
-    }),
+    updateImage: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+                url: z.string().min(1).max(50),
+                fileName: z.string().min(1).max(50),
+                fileSize: z.number().min(1).max(1000000000),
+                fileKey: z.string().min(1).max(50),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            const image = await ctx.db.image.update({
+                where: {
+                    id: input.id,
+                },
+                data: {
+                    url: input.url,
+                    fileName: input.fileName,
+                    fileSize: input.fileSize,
+                    fileKey: input.fileKey,
+                },
+            });
+            if (!image) {
+                throw new Error("Image not found");
+            }
+            return image;
+        }),
 });

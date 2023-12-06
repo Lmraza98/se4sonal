@@ -1,5 +1,5 @@
 import "~/styles/globals.css";
-import Navigation from "~/components/navigation/admin-nav"
+import Navigation from "~/components/navigation/AdminNav"
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { cookies } from "next/headers";

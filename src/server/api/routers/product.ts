@@ -16,25 +16,22 @@ export const productRouter = createTRPCRouter({
   createProduct: publicProcedure
     .input(
       z.object({
-        active: z.boolean(),
         name: z.string().min(1).max(50),
         description: z.string().min(1).max(50),
-        mainImageId: z.number(),
+        stock: z.number().nullish(),
+        active: z.boolean(),
+        productSizeIds: z.array( z.number() ),
+        priceId: z.number().nullish(),
+        capsuleId: z.number().nullish(),
+        categoryId: z.number().nullish(),
+        mainImageId: z.number().nullish(),
         imageIds: z.array(z.number()),
         cartId: z.number().optional(),
-        categoryId: z.number(),
-        stock: z.number(),
-        capsuleId: z.number(),
-        priceId: z.number(),
-        sizeIds: z.array(
-         z.number(),
-        ),
-        stripeId: z.string().min(1).max(50),
+        stripeId: z.string().min(1).max(50).optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       const productData = {
-        category: input.categoryId,
         cartId: input.cartId,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -48,11 +45,18 @@ export const productRouter = createTRPCRouter({
         stripeId: input.stripeId,
         active: input.active,
         imageIds: input.imageIds,
-        sizes: input.sizeIds ? {
-          connect: input.sizeIds.map(id => ({ id })),
+        productSizesIds: input.productSizeIds,
+        sizes: input.productSizeIds ? {
+          connect: input.productSizeIds.map(id => ({ id })),
         } : undefined,
         mainImage: {
           connect: { id: input.mainImageId },
+        },
+        cart: {
+          connect: { id: input.cartId },
+        },
+        category: {
+          connect: { id: input.categoryId },
         },
         images: {
           connect: input.imageIds.map((id) => ({ id })),
@@ -66,7 +70,7 @@ export const productRouter = createTRPCRouter({
           ? {
             connect: { id: input.priceId },
           }
-          : undefined,
+          : undefined
         // other fields...
       } as Prisma.ProductCreateInput;
 

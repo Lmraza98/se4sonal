@@ -38,7 +38,7 @@ export const capsuleRouter = createTRPCRouter({
                 id: z.number().min(1).max(100),
             })
         )
-        .query(async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
             const capsule = await ctx.db.capsule.delete({
                 where: {
                     id: input.id
@@ -48,6 +48,30 @@ export const capsuleRouter = createTRPCRouter({
                 throw new Error("Capsule not found")
             }
             return capsule
-        })
+        }),
+    updateCapsule: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+                name: z.string().min(1).max(50),
+                description: z.string().min(1).max(50),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            const capsule = await ctx.db.capsule.update({
+                where: {
+                    id: input.id,
+                },
+                data: {
+                    name: input.name,
+                    description: input.description,
+                    updatedAt: new Date(),
+                },
+            });
+            if (!capsule) {
+                throw new Error("Capsule not found");
+            }
+            return capsule;
+        }),
 
 });

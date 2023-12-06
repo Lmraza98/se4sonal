@@ -1,5 +1,5 @@
-import { Logo } from './logo'
-import { Product } from './product'
+import { Logo } from './Logo'
+import { Product } from './Product'
 export {
     Logo,
     Product

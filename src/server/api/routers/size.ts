@@ -13,19 +13,41 @@ export const sizeRouter = createTRPCRouter({
     createSize: publicProcedure
         .input(
         z.object({
-            id: z.number(),
             name: z.string().min(1).max(50),
-            description: z.string().min(1).max(50),
+            description: z.string().min(1).max(50).nullish(),
         }),
         )
-        .query(async ({ ctx, input }) => {
-        const size = await ctx.db.size.create({
+        .mutation(async ({ ctx, input }) => {
+        const size = await ctx.db.size.create({ 
             data: {
-            name: input.name,
-            description: input.description,
+                name: input.name,
+                description: input.description,
             },
         });
         return size;
+        }),
+    updateSize: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+                name: z.string().min(1).max(50),
+                description: z.string().min(1).max(50).nullish(),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            const size = await ctx.db.size.update({
+                where: {
+                id: input.id,
+                },
+                data: {
+                name: input.name,
+                description: input.description,
+                },
+            });
+            if (!size) {
+                throw new Error("Size not found");
+            }
+            return size;
         }),
     deleteSize: publicProcedure
         .input(
@@ -33,7 +55,7 @@ export const sizeRouter = createTRPCRouter({
             id: z.number().min(1).max(100),
         }),
         )
-        .query(async ({ ctx, input }) => {
+        .mutation(async ({ ctx, input }) => {
         const size = await ctx.db.size.delete({
             where: {
             id: input.id,
