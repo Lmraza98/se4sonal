@@ -1,115 +1,119 @@
-"use client"
-import React from 'react'
-import type { RouterOutputs } from "~/trpc/shared"
-import Image from 'next/image'
-import { api } from '~/trpc/server'
+"use client";
+import React from 'react';
+import Image from 'next/image';
 
-// export type ProductType = RouterOutputs['product'][ 'getProduct']
-// import type { Product as ProductType } from '@prisma/client'
-import type { Product as ProductType, Price, Capsule, Category, Sizes, ProductImage } from '@prisma/client'
+import type { Size } from '@prisma/client';
 
-type ExtractedProductType = Exclude<ProductType, null>;
-export interface CreateProductFormState extends Partial<ExtractedProductType> {
-    active: boolean;
-    stripeId: string;
-    name: string;
-    description: string;
-    priceId: number;
-    stock: number | null;
-    categoryId: number;
-    capsuleId: number;
-    sizeIds: number[];
-    imageIds: number[];
-    mainImageId: number;
-    sizes: Sizes[];
-    images: ProductImage[];
-    price: Price | undefined;
-    capsule: Capsule | undefined;
-    category: Category | undefined;
-    // prices?: Price[];
-    // capsules?: Capsule[];
-    // categories?: Category[];
+interface ImageType {
+    id: number,
+    url: string,
 }
-const Product: React.FC<CreateProductFormState> = ( product ) => {
 
-    if(!product) return (
-        <div>
-            No Product
-        </div>
-    )
-    
-    const { 
-        id,
-        active,
-        capsuleId,
-        categoryId,
-        description,
-        images,
-        mainImageId,
+interface ProductProps {
+    product: {
+        name: string, 
+        description: string,
+        mainImage: ImageType,
+        images: ImageType[],
+        sizes: Omit<Size, 'description'>[]
+        price: number,
+        capsule: {
+            id: number,
+            name: string,
+        }
+    },
+    setSize: (size: Omit<Size, 'description'>) => void
+}
+
+const Product: React.FC<ProductProps> = ({ product, setSize }) => {
+
+    if(!product) return <div>No Product</div>;
+
+    const {
         name,
-        price,
-        capsule,
-        category,
-        imageIds,
-        sizeIds,
-        cartId,
-        createdAt,
-        updatedAt,
+        description,
+        mainImage,
+        images,
         sizes,
-        stock,
-        stripeId
-    } = product
-   
+        price,
+        capsule
+    } = product;
 
-   
-
-    // const prices = await api.price.getAllPrices.query()
-    // const categories = await api.category.getAllCategories.query()
-    // const capsules = await api.capsule.getAllCapsules.query()
-    // const sizes = await api.size.getAllSizes.query()
+    const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        const selectedSize = sizes.find(size => size.id.toString() === event.target.value);
+        if (selectedSize) {
+            setSize(selectedSize);
+        }
+    };
 
     return (
-        <div className='w-full flex flex-row'>
-            <div className='flex flex-col'>
-                <h1>{ name }</h1>
-                <section>
-                    <p>
-                        { description }
-                    </p>
+        <div className='w-full flex flex-row p-5 gap-5'>
+            <div className='h-full flex flex-col w-2/5 gap-5'>
+                <h1 className='text-[21px] font-sans'>{name}</h1>
+                <section className='flex flex-col gap-3'>
+                    <span >{capsule.name}</span>
+                    <p className='text-xs'>{description}</p>
                 </section>
                 <section>
                     <div>
-                        {/* { 
-                            resolvedImages.length > 0 ?
-                            
-                            resolvedImages.map( (image) => {
-                                return (
-                                    <Image key={image.id} src={image.url} width={100} height={100} alt={image.fileName} />
-                                )
-                            }) 
-                            :
-                            <div>
-                                No Images
-                            </div>
-                        } */}
+                        {images.length > 0 ?
+                            images.map(image => (
+                                <Image key={image.id} src={image.url} width={150} height={150}  />
+                            )) :
+                            <div>No Images</div>
+                        }
                     </div>
                 </section>
-                <section>
+                <section className='flex flex-col gap-3'>
                     <h2>
-                        { 
-                            product.priceId
+                        <span className=''>{ 
+                            new Intl.NumberFormat('en-US', {
+                                style: 'currency',
+                                currency: 'USD',
+                            }).format(price) 
                         }
+                        </span>
                     </h2>
                 </section>
+                <section className='flex flex-col gap-3'>
+                    <div className='flex flex-row gap-5'>
+                        <select
+                            id="size-select"
+                            
+                            className="mt-1 block p-1 w-20 border-half border-black shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                            onChange={handleSizeChange}
+                        >
+                            {sizes.map(size => (
+                                <option key={size.id} value={size.id}>{size.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <div className='flex flex-row gap-5'>
+                        <button className='w-20 bg-black text-white p-1 text-sm'>Add to Cart</button>
+                        <button className='w-20 bg-black text-white p-1 text-sm'>Buy Now</button>
+                    </div>
+                </section>
+                {/* <section className='flex flex-col gap-3'>
+                        <select
+                            id="size-select"
+                            
+                            className="mt-1 block p-1 w-full border-half border-black shadow-sm focus:border-black focus:ring-black sm:text-sm"
+                            onChange={handleSizeChange}
+                        >
+                            {sizes.map(size => (
+                                <option key={size.id} value={size.id}>{size.name}</option>
+                            ))}
+                        </select>
+                </section> */}
             </div>
-            <div className='flex flex-col'>
-                {/* {
-                    mainImage ?
-                    <Image src={mainImage.url} width={500} height={500} alt={ mainImage.fileName ?? "NO name for image" } />
+            <div className='h-full flex flex-col w-3/5'>
+                {mainImage !==null  ?
+                    <Image src={mainImage.url} width={500} height={500} />
                     : <div>No Main Image</div>
-                } */}
+                }
             </div>
         </div>
-    )
-}
-export { Product }
+    );
+};
+
+export { Product };

@@ -4,23 +4,30 @@ import { UserButton } from "@clerk/nextjs";
 
 export default function AdminNavigation() {
     return (
-        <div className="h-full flex flex-col justify-between w-64 bg-white px-4 py-8 border-r text-lg font-mono shadow-2xl">
-            <div className='h-40 flex flex-col justify-center align-middle'>
-                <div className='w-full flex flex-row justify-center'>
+        <div className=" w-full flex flex-row justify-between bg-white border-r text-lg font-mono shadow-lg">
+
+            <div className='w-1/3 flex flex-row justify-center'>
+                <div className=' pt-4 p-2 flex flex-row gap-3 justify-end align-baseline'>
                     <Logo/>
+                    <div className='flex flex-col justify-end align-bottom'>
+                    <span className='text-sm'>Admin</span>
+                    </div>
+                    
                 </div>
-                
+               
             </div>
-            <div className='flex flex-col justify-between '>
-                <Link className={'h-full w-full p-4 m-2 border-4 border-transparent hover:border-gray-200 rounded-lg text-end'} href={'/admin'}>
+                
+        
+            <div className='flex flex-row w-2/3 justify-start gap-10 px-10'>
+                <Link className={'flex flex-col justify-end align-baseline h-full w-full border-transparent border-2 hover:border-b-black text-center'} href={'/admin'}>
                     Dashboard
                 </Link>
-                <Link className={'h-full w-full p-4 m-2 border-4 border-transparent hover:border-gray-200 rounded-lg text-end'} href={'/admin/inventory'}>Inventory</Link>
-                <Link className={'h-full w-full p-4 m-2 border-4 border-transparent hover:border-gray-200 rounded-lg text-end' } href={'/admin/order'}>Order</Link>
-                <Link className={'h-full w-full p-4 m-2 border-4 border-transparent hover:border-gray-200 rounded-lg text-end'} href={'/admin/product'}>Product</Link>
-                <Link className={'h-full w-full p-4 m-2 border-4 border-transparent hover:border-gray-200 rounded-lg text-end'} href={'/admin/shipping'}>Shipping</Link>
+                <Link className={'flex flex-col justify-end align-baseline h-full w-full border-2 border-transparent hover:border-b-black text-center'} href={'/admin/inventory'}>Inventory</Link>
+                <Link className={'flex flex-col justify-end align-baseline h-full w-full border-2 border-transparent hover:border-b-black text-center' } href={'/admin/order'}>Order</Link>
+                <Link className={'flex flex-col justify-end align-baseline h-full w-full border-2 border-transparent hover:border-b-black text-center'} href={'/admin/product'}>Product</Link>
+                <Link className={'flex flex-col justify-end align-baseline h-full w-full border-2 border-transparent hover:border-b-black text-center'} href={'/admin/shipping'}>Shipping</Link>
             </div>
-            <div className='h-60 flex flex-col justify-center'>
+            <div className='flex flex-row justify-center'>
                 <div className='flex flex-row justify-center align-middle'>
                     <UserButton />
                 </div>

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
 
-import AnnouncementBar from "~/components/banner";
+import AnnouncementBar from "~/components/Banner";
 import { Logo } from "~/components";
 
 import Link from 'next/link'

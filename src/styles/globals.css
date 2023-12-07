@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* In your global CSS file */
+.border-half {
+    box-shadow: 0.5px 0.5px 0 0.5px black;
+    outline: none;
+    /* transform: scaleY(0.5); */
+    /* border-width: 0.5px; */
+}
+  

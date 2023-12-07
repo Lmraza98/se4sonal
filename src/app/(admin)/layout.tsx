@@ -19,9 +19,9 @@ export default function AdminLayout({
       <ClerkProvider>
         <html lang="en">
           <body>
-              <div className="flex h-screen bg-gray-100">
+              <div className="flex flex-col w-full h-full bg-gray-100">
                 <Navigation/>
-                <div className="flex-1 p-6 overflow-y-auto">
+                <div className="">
                 <NextSSRPlugin
                   /**
                    * The `extractRouterConfig` will extract **only** the route configs

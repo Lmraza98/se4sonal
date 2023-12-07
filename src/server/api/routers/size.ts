@@ -58,7 +58,7 @@ export const sizeRouter = createTRPCRouter({
         .mutation(async ({ ctx, input }) => {
         const size = await ctx.db.size.delete({
             where: {
-            id: input.id,
+                id: input.id,
             },
         });
         if (!size) {

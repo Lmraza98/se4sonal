@@ -73,4 +73,56 @@ export const priceRouter = createTRPCRouter({
             }
             return price;
         }),
+    updatePrice: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+                price: z.number().min(1).max(1000000000),
+                description: z.string().min(1).max(50),
+                name: z.string().min(1).max(50),
+                stripeId: z.string().min(1).max(50),
+            }),
+        )
+        .mutation(async ({ ctx, input }) => {
+            try {
+                // const stripePrice = await stripe.prices.update(
+                //     input.stripeId,
+                //     {
+                //         unit_amount: input.price,
+                //         currency: "usd",
+                //         product_data: {
+                //             name: input.description,
+                //         },
+                //     },
+                // );
+                // if (!stripePrice || !stripePrice.id) {
+                //     throw new Error("Failed to update price in Stripe.");
+                // }
+                const price = await ctx.db.price.update({
+                    where: {
+                        id: input.id,
+                    },
+                    data: {
+                        description: input.description,
+                        stripeId: input.stripeId,
+                        price: input.price,
+                        name: input.name,
+                    },
+                });
+                if (!price) {
+                    throw new Error("Price not found");
+                }
+                return price;
+            } catch (err) {
+                // Improved error handling
+                if (err instanceof Error) {
+                    console.error("Error in updatePrice: ", err.message);
+                    throw new Error(`Error updating price: ${err.message}`);
+                } else {
+                    // If it's not an Error instance, handle accordingly
+                    console.error("Error in updatePrice: ", err);
+                    throw new Error("Error updating price");
+                }
+            }
+        })
 });

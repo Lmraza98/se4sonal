@@ -145,3 +145,27 @@
 2023-12-06 13:04:38.032 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.002 s, total=0.419 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4 kB, estimate=9 kB
 2023-12-06 13:39:37.040 EST [44624] LOG:  checkpoint starting: time
 2023-12-06 13:39:37.354 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.309 s, sync=0.001 s, total=0.315 s; sync files=4, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=9 kB
+2023-12-06 14:14:37.411 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 14:14:37.934 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.510 s, sync=0.002 s, total=0.523 s; sync files=5, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=8 kB
+2023-12-06 15:44:37.899 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 15:44:38.423 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.515 s, sync=0.004 s, total=0.524 s; sync files=6, longest=0.002 s, average=0.001 s; distance=4 kB, estimate=7 kB
+2023-12-06 15:49:37.443 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 15:49:37.757 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.307 s, sync=0.003 s, total=0.315 s; sync files=4, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=7 kB
+2023-12-06 15:59:37.758 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 15:59:38.070 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.306 s, sync=0.003 s, total=0.313 s; sync files=4, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=6 kB
+2023-12-06 16:14:37.070 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 16:14:37.185 EST [44624] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.106 s, sync=0.001 s, total=0.115 s; sync files=2, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=6 kB
+2023-12-06 16:19:37.217 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 16:19:38.037 EST [44624] LOG:  checkpoint complete: wrote 9 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.812 s, sync=0.004 s, total=0.820 s; sync files=9, longest=0.002 s, average=0.001 s; distance=5 kB, estimate=6 kB
+2023-12-06 16:24:37.040 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 16:24:37.351 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.304 s, sync=0.003 s, total=0.312 s; sync files=4, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=5 kB
+2023-12-06 16:39:37.358 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 16:39:37.685 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.313 s, sync=0.003 s, total=0.328 s; sync files=4, longest=0.002 s, average=0.001 s; distance=4 kB, estimate=5 kB
+2023-12-06 22:49:37.956 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 22:49:38.589 EST [44624] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.620 s, sync=0.003 s, total=0.635 s; sync files=5, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=5 kB
+2023-12-06 23:09:37.567 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 23:09:37.978 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.406 s, sync=0.003 s, total=0.412 s; sync files=5, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=4 kB
+2023-12-06 23:14:37.979 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 23:14:38.091 EST [44624] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.105 s, sync=0.002 s, total=0.112 s; sync files=1, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=4 kB
+2023-12-06 23:19:37.093 EST [44624] LOG:  checkpoint starting: time
+2023-12-06 23:19:37.511 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.413 s, sync=0.002 s, total=0.419 s; sync files=5, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=4 kB

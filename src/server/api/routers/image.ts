@@ -35,7 +35,7 @@ export const imageRouter = createTRPCRouter({
                 url: z.string().min(1).max(50),
                 fileName: z.string().min(1).max(50),
                 fileSize: z.number().min(1).max(1000000000),
-                fileKey: z.string().min(1).max(50),
+                fileKey: z.string().min(1).max(50)
             }),
         )
         .mutation(async ({ ctx, input }) => {

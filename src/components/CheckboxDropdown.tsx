@@ -1,3 +1,4 @@
+"use client"
 import React, { useState, useEffect, useRef } from 'react';
 
 interface BaseDropdownItem {
@@ -12,6 +13,7 @@ interface CheckboxDropdownProps<T extends BaseDropdownItem> {
   value: T[]; // The array of selected items
   onChange: (items: T[]) => void; // Callback to update the form state
   onEditItem: (item: T) => void;
+  multiple?: boolean; // Determines if multiple selections are allowed
 }
 
 export const CheckboxDropdown = <T extends BaseDropdownItem>({
@@ -20,24 +22,27 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
   value = [],
   onChange,
   onEditItem,
+  multiple = false,
 }: CheckboxDropdownProps<T>) => {
-  console.log("Value: ", value)
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const checkboxRef = useRef<HTMLUListElement>(null);
 
   const onClose = () => setIsOpen(false);
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, item: T) => {
+  const handleSingleChange = (item: T) => {
+    onChange([item]); // Update the value with the newly selected item
+    setIsOpen(false); // Close dropdown after selection
+  };
+
+  const handleMultipleChange = (event: React.ChangeEvent<HTMLInputElement>, item: T) => {
     const isChecked = event.target.checked;
     const updatedSelectedItems = isChecked
       ? [...value, item] // Add item
       : value.filter((selectedItem) => selectedItem.id !== item.id); // Remove item
-    console.log("Updated Selected Items: ", updatedSelectedItems)
+
     onChange(updatedSelectedItems);
   };
 
-
-  // Close the modal on click outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (checkboxRef.current && !checkboxRef.current.contains(event.target as Node)) {
@@ -49,7 +54,6 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [onClose]);
 
-  // Close the modal on pressing Escape key
   useEffect(() => {
     const handleEscapeKey = (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -75,24 +79,36 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
           ) : (
             items.map((item: T) => (
               <li key={item.id} className="flex items-center p-2 hover:bg-gray-100">
-                <input
-                  type="checkbox"
-                  id={item.id.toString()}
-                  name={item.name}
-                  checked={
-                    value.length > 0 ? value.some(v => v.id === item.id) : false
-                  }
-                  onChange={(e) => handleChange(e, item)}
-                  className="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
-                />
-                <span className="ml-2 text-sm text-gray-700">{item.name}</span>
-                <button 
-                  className="ml-auto text-blue-500 hover:text-blue-700"
-                  type='button' 
-                  onClick={() => onEditItem(item)}
-                >
-                  Edit
-                </button>
+                {multiple ? (
+                  <>
+                    <input
+                      type="checkbox"
+                      id={item.id.toString()}
+                      name={item.name}
+                      checked={value.some(v => v.id === item.id)}
+                      onChange={(e) => handleMultipleChange(e, item)}
+                      className="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500"
+                    />
+                    <span className="ml-2 text-sm text-gray-700">{item.name}</span>
+                  </>
+                ) : (
+                  <button 
+                    type="button"
+                    className="w-full text-left"
+                    onClick={() => handleSingleChange(item)}
+                  >
+                    {item.name}
+                  </button>
+                )}
+                {(
+                  <button 
+                    className="ml-auto text-blue-500 hover:text-blue-700"
+                    type='button' 
+                    onClick={() => onEditItem(item)}
+                  >
+                    Edit
+                  </button>
+                )}
               </li>
             ))
           )}
