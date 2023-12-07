@@ -169,3 +169,13 @@
 2023-12-06 23:14:38.091 EST [44624] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.105 s, sync=0.002 s, total=0.112 s; sync files=1, longest=0.002 s, average=0.002 s; distance=0 kB, estimate=4 kB
 2023-12-06 23:19:37.093 EST [44624] LOG:  checkpoint starting: time
 2023-12-06 23:19:37.511 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.413 s, sync=0.002 s, total=0.419 s; sync files=5, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=4 kB
+2023-12-07 13:24:37.907 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 13:24:38.237 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.314 s, sync=0.004 s, total=0.331 s; sync files=4, longest=0.003 s, average=0.001 s; distance=1 kB, estimate=3 kB
+2023-12-07 16:09:37.429 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 16:09:37.743 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.310 s, sync=0.002 s, total=0.315 s; sync files=4, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=3 kB
+2023-12-07 16:44:37.752 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 16:44:38.163 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.407 s, sync=0.003 s, total=0.411 s; sync files=5, longest=0.002 s, average=0.001 s; distance=1 kB, estimate=3 kB
+2023-12-07 16:54:37.158 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 16:54:37.365 EST [44624] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.205 s, sync=0.001 s, total=0.208 s; sync files=3, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=3 kB
+2023-12-07 16:59:37.367 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 16:59:37.781 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.003 s, total=0.414 s; sync files=5, longest=0.002 s, average=0.001 s; distance=2 kB, estimate=3 kB

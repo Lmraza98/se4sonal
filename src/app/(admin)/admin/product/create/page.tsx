@@ -1,6 +1,6 @@
 "use client";
 import { api } from "~/trpc/react";
-import { useForm } from "@tanstack/react-form";
+import { ValidationError, useForm } from "@tanstack/react-form";
 import { useState, useEffect } from "react";
 import { Size } from "@prisma/client";
 import { CreateProductForm } from "./form";
@@ -22,7 +22,7 @@ const useImage = () => {
     data: images,
     isLoading,
     error,
-  } = api.imageRouter.getImages.useQuery();
+  } = api.imageRouter.getAllImages.useQuery();
 
   return { images, isLoading, error };
 }
@@ -58,7 +58,23 @@ const useSize = () => {
 };
 
 export default function CreateProductPage() {
+ 
   const createProduct = api.product.createProduct.useMutation();
+  const [formState, setFormState ] = useState<{
+    stripeId: string;
+    name: string;
+    description: string;
+    stock: number;
+    active: boolean;
+    productSizeIds: number[];
+    priceId: number;
+    capsuleId: number;
+    categoryIds: number[];
+    mainImageId: number;
+    imageIds: number[];
+  }>()
+
+
   const form = useForm({
     defaultValues: {
       stripeId: "",
@@ -73,17 +89,61 @@ export default function CreateProductPage() {
       mainImageId: -1,
       imageIds: [-1],
     },
+    onChange: (values):ValidationError => {
+      console.log("Form Values: ", values);
+      setFormState(values)
+      return null as unknown as ValidationError
+    },
     onSubmit: (values) => {
       createProduct.mutate(values);
     },
   });
+  const [viewProduct, setViewProduct] = useState<{
+    name: string;
+    description: string;
+    price: number;
+    capsule: {
+      id: number;
+      name: string;
+    };
+    mainImageId: number;
+    imageIds: number[];
+    sizes: {
+      id: number;
+      name: string;
+    }[];
+  }>({
+    name: "",
+    description: "",
+    price: -1,
+    capsule: {
+      id: -1,
+      name: "",
+    },
+    mainImageId: -1,
+    // images: [],
+    imageIds: [-1],
+    sizes: [{
+      id: -1,
+      name: "",
+    }],
+  });
+  
+ 
 
   const { sizes } = useSize()
   const { prices } = usePrice();
   const { capsules } = useCapsule();
   const { categories } = useCategory();
   const { images } = useImage();
+  const [selectedMainImage, setSelectedMainImage] = useState<number | null>(null);
+  const [selectedOtherImages, setSelectedOtherImages] = useState<number[]>([]);
 
+  const setSelectMainImage = (id: number) => {
+    console.log("setSelectMainImage: ", id)
+    setSelectedMainImage(id)
+  }
+  const setSelectOtherImages = (id: number[]) => {setSelectedOtherImages(id)}
   const product = {
     name: "Alyx Icon Flower",
     description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis elit euismod, fermentum est vel, pulvinar lectus. In hac habitasse platea dictumst. Sed consequat libero quis mi malesuada, ut feugiat massa feugiat. Duis feugiat tincidunt dolor ut pretium.",
@@ -121,12 +181,30 @@ export default function CreateProductPage() {
   };
 
   const [size, setSize] = useState<Omit<Size, 'description'> | null>(null);
-  
+
+  useEffect(() => {
+    console.log("selectedMainImage", selectedMainImage)
+    console.log("selectedOtherImages", selectedOtherImages)
+   
+      setViewProduct({
+        name: formState?.name ?? "",
+        description: formState?.description ?? "",
+        price: formState?.priceId ?? -1,
+        capsule: {
+          id: formState?.capsuleId ?? -1,
+          name: capsules?.find(capsule => capsule.id === formState?.capsuleId)?.name ?? "",
+        },
+        mainImageId: selectedMainImage ?? -1,
+        imageIds: selectedOtherImages,
+        sizes: [],
+      });
+    
+   },[formState, selectedMainImage, selectedOtherImages])
 
   return (
     <ProductDataProvider>
     <div className="flex h-screen flex-row">
-      <div className='w-1/2 py-5'>
+      <div className='h-full w-full flex flex-col justify-center align-middle p-20'>
         <CreateProductForm
           form={form}
           sizes={sizes}
@@ -134,10 +212,12 @@ export default function CreateProductPage() {
           prices={prices}
           categories={categories}
           images={images}
+          setSelectedMainImage={setSelectMainImage}
+          setSelectedOtherImages={setSelectOtherImages}
         />
       </div>
-      <div className='w-1/2 flex flex-col justify-center align-middle'>
-        <Product product={product} setSize={setSize} />
+      <div className='w-full h-full flex flex-col justify-center align-middle'>
+        <Product product={viewProduct} setSize={setSize} />
       </div>
      
       

@@ -5,17 +5,19 @@ import { api } from "~/trpc/react";
 import { CheckboxDropdown, Modal, Dropzone, ImagesWithPagination } from '~/components'
 // import { CheckboxDropdown } from "~/components/CheckboxDropdown";
 // import { Modal } from "~/components/Modal";
-import type { Size, Price, Capsule, Category, Image } from "@prisma/client";
-import { type FormApi } from "@tanstack/react-form";
+import type { Size, Price, Capsule, Category, Image as ImageType } from "@prisma/client";
+import { FieldApi, type FormApi } from "@tanstack/react-form";
 import { useProductData } from './context'
 
 
 interface CreateProductFormProps {
+  setSelectedMainImage: (mainImage: number) => void;
+  setSelectedOtherImages: (otherImages: number[]) => void;
   sizes: Size[] | undefined;
   prices: Price[] | undefined;
   capsules: Capsule[] | undefined;
   categories: Category[] | undefined;
-  images: Image[] | undefined;
+  images: ImageType[] | undefined;
   form: FormApi<{
     stripeId: string;
     name: string;
@@ -37,7 +39,9 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   prices,
   categories,
   capsules,
-  images
+  images,
+  setSelectedMainImage,
+  setSelectedOtherImages
 }) => {
   const [isSizeModalOpen, setSizeModalOpen] = useState<boolean>(false);
   const [isPriceModalOpen, setPriceModalOpen] = useState<boolean>(false);
@@ -55,11 +59,25 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   const [selectedCategories, setSelectedCategories] = useState<Category[]>([])
   const [selectedCapsule, setSelectedCapsule] = useState<Omit<Capsule, 'updatedAt' | 'createdAt'>>()
 
-  const [selectedImages, setSelectedImages] = useState<Image[]>([])
+  const [selectedImages, setSelectedImages] = useState<ImageType[]>([])
 
-  const [mainImage, setMainImage] = useState<Image>()
+  const [mainImage, setMainImage] = useState<ImageType>()
   const [mainImageId, setMainImageId] = useState<number>(-1)
 
+
+
+  const handleSelection = (mainImage: number, otherImages: number[]) => {
+    setSelectedMainImage(mainImage);
+    setSelectedOtherImages(otherImages);
+     // Update the form fields using the form instance
+     
+     form.setFieldValue('mainImageId', mainImage);
+     form.setFieldValue('imageIds', otherImages);
+    //  form.update('mainImageid')
+    //  form.update('imageIds')
+
+  };
+ 
   useEffect(() => {
     console.log("editSize", editSize);
     if (editSize) {
@@ -83,6 +101,10 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
       setCapsuleModalOpen(true);
     }
   }, [editCapsule])
+
+  useEffect(() => {
+    console.log("form: ",form.state.values)
+  },[form])
 
   // useEffect(() => {
   //   api.imageRouter.getImage.useQuery({ id: mainImageId })
@@ -113,7 +135,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   const createCapsule = api.capsuleRouter.createCapsule.useMutation()
 
   return (
-    <div className="w-full pl-2">
+    <div className="w-full">
       <form.Provider>
         <form
           onSubmit={(e) => {
@@ -122,8 +144,8 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
             void form.handleSubmit();
           }}
         >
-          <div className="flex h-full  w-full flex-col lg:flex-row gap-2">
-            <div className="flex w-full h-full flex-col ">
+          <div className="flex h-full  w-full flex-col lg:flex-row gap-5">
+            <div className="flex w-full h-full flex-col">
               <form.Field
                 name="name"
                 // eslint-disable-next-line react/no-children-prop
@@ -181,6 +203,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
                   </div>
                 )}
               />
+              
               <form.Field
                 name="active"
                 // eslint-disable-next-line react/no-children-prop
@@ -200,7 +223,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
                   </div>
                 )}
               />
-            <form.Field
+              <form.Field
                 name="mainImageId"
                 // eslint-disable-next-line react/no-children-prop
                 children={(field) => (
@@ -211,291 +234,283 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
                     <Dropzone setUploadedImageId={(id) => setMainImageId(id)} />
                     {
                       images && images.length > 0 ? (
-                        <ImagesWithPagination images={images} />
-                          // images.map(image => {
-                          //   return (
-                          //     <div key={image?.fileName}  className='flex flex-row gap-3'>
-                          //     <Image src={image?.url} alt={image.fileName} height={250} width={250}/>
-                          //     <button
-                          //       type='button'
-                          //       onClick={() => {
-                          //         api.imageRouter.deleteImage.useMutation({ id: image.id })
-                          //       }}
-                          //     >
-                          //       Delete
-                          //     </button>
-                          //   </div>
-                          //   )
-                            
-                          // })
-                        
+                        <ImagesWithPagination images={images} onSelect={(mainImage, otherImages) => handleSelection(mainImage, otherImages)} />
+                        // images.map(image => {
+                        //   return (
+                        //     <div key={image?.fileName}  className='flex flex-row gap-3'>
+                        //     <Image src={image?.url} alt={image.fileName} height={250} width={250}/>
+                        //     <button
+                        //       type='button'
+                        //       onClick={() => {
+                        //         api.imageRouter.deleteImage.useMutation({ id: image.id })
+                        //       }}
+                        //     >
+                        //       Delete
+                        //     </button>
+                        //   </div>
+                        //   )
+
+                        // })
+
                       ) : <div>no images</div>
                     }
                   </div>
                 )}
               />
-              <form.Field
-                name="imageIds"
-                // eslint-disable-next-line react/no-children-prop
-                children={(field) => (
-                  <div>
-                    <label className="mb-2 block text-sm font-bold text-gray-700">
-                      Other Images
-                    </label>
-                    <Dropzone />
-                  </div>
-                )}
-              />
-            </div>
-            
-          
-            <div className="flex  w-full  h-full flex-col gap-2">
+              <div className='flex flex-col justify-center gap-1'>
+                <div className='flex flex-row gap-10'>
+                  <form.Field
+                    name="productSizeIds"
+                    // eslint-disable-next-line react/no-children-prop
+                    children={(field) => (
+                      <div>
+                        <label className="mb-2 block text-sm font-bold text-gray-700">
+                          Sizes
+                        </label>
+                        <div className='flex flex-row gap-3'>
+                          <CheckboxDropdown<Size>
+                            multiple={true}
+                            name='Sizes'
+                            items={sizes ?? []} // Pass your size items here
+                            value={selectedSizes} // Pass the current value from the form field
+                            onChange={(selectedItems) => {
+                              setSelectedSizes(selectedItems)
+                              field.handleChange(selectedItems as unknown as never[])
+                            }} // Pass the onChange handler from the form field
+                            onEditItem={(item: Size) => {
+                              console.log("Edit Item: ", item)
+                              // const changeSize = api.sizeRouter.updateSize.useMutation()
+                              setEditSize(item);
+                            }}
+                          />
+                          <CreateItem
+                            <Size>
+                            name='Size'
+                            item={editSize ?? { id: -1, name: "", description: "" }}
+                            createItem={({ name, description }) => createSize.mutate({ name, description })}
+                            deleteItem={deleteSize}
+                            updateItem={(size: Size) => updateSize(size)}
+                            refreshItem={refreshSizes}
+                            isModalOpen={isSizeModalOpen}
+                            setModalOpen={setSizeModalOpen}
+                            handleChange={async (updatedSize: Size) => {
+                              const updatedSizes = sizes?.map(size =>
+                                size.id === updatedSize.id ? updatedSize : size
+                              );
+                              // Update form state here
+                              field.handleChange(updatedSizes as unknown as never[] ?? [] as unknown as never[]);
+                              await refreshSizes()
+                            }
+                            } // Pass the callback to CreateItem
 
+                            setEditItem={setEditSize}
+                          />
+                        </div>
 
+                        {field.state.value !== undefined ? (
+                          <DisplaySelectedItems<Size>
+                            selectedItems={selectedSizes ?? []}
+                            updateItems={(updatedItems) => setSelectedSizes(updatedItems)}
+                          />
+                          // <SelectedSizeDisplay
 
-              <form.Field
-                name="productSizeIds"
-                // eslint-disable-next-line react/no-children-prop
-                children={(field) => (
-                  <div>
-                    <label className="mb-2 block text-sm font-bold text-gray-700">
-                      Sizes
-                    </label>
-                    <div className='flex flex-row gap-3'>
-                      <CheckboxDropdown<Size>
-                        multiple={true}
-                        name='Sizes'
-                        items={sizes ?? []} // Pass your size items here
-                        value={selectedSizes} // Pass the current value from the form field
-                        onChange={(selectedItems) => {
-                          setSelectedSizes(selectedItems)
-                          field.handleChange(selectedItems as unknown as never[])
-                        }} // Pass the onChange handler from the form field
-                        onEditItem={(item: Size) => {
-                          console.log("Edit Item: ", item)
-                          // const changeSize = api.sizeRouter.updateSize.useMutation()
-                          setEditSize(item);
-                        }}
-                      />
-                      <CreateItem
-                        <Size>
-                        name='Size'
-                        item={editSize ?? { id: -1, name: "", description: "" }}
-                        createItem={({ name, description }) => createSize.mutate({ name, description })}
-                        deleteItem={deleteSize}
-                        updateItem={(size: Size) => updateSize(size)}
-                        refreshItem={refreshSizes}
-                        isModalOpen={isSizeModalOpen}
-                        setModalOpen={setSizeModalOpen}
-                        handleChange={async (updatedSize: Size) => {
-                          const updatedSizes = sizes?.map(size =>
-                            size.id === updatedSize.id ? updatedSize : size
-                          );
-                          // Update form state here
-                          field.handleChange(updatedSizes as unknown as never[] ?? [] as unknown as never[]);
-                          await refreshSizes()
+                          // />
+                        ) : <div>no sizes</div>}
+
+                      </div>
+                    )}
+                  />
+                  <form.Field
+                    name="priceId"
+                    // eslint-disable-next-line react/no-children-prop
+                    children={(field) => (
+                      <div>
+                        <label className="mb-2 block text-sm font-bold text-gray-700">
+                          Price
+                        </label>
+                        <div className='flex flex-row gap-3'>
+                          <CreateItem
+                            <Price>
+                            name='Price'
+                            item={editPrice ?? { id: -1, name: "", description: "", price: 0, stripeId: "" }}
+                            createItem={({ name, description, stripeId, price }) => createPrice.mutate({ name, description, stripeId, price })}
+                            deleteItem={deletePrice}
+                            refreshItem={refreshPrices}
+                            isModalOpen={isPriceModalOpen}
+                            setModalOpen={setPriceModalOpen}
+                            updateItem={(price: Price) => updatePrice(price)}
+                            handleChange={async (updatedPrice: Price) => {
+                              setSelectedPrice(updatedPrice)
+                              // const updatedPrices = prices?.map(price =>
+                              //   price.id === updatedPrice.id ? updatedPrice : price
+                              // );
+                              // Update form state here
+                              field.handleChange(selectedPrice?.id ?? -1);
+                              await refreshPrices()
+                            }
+                            } // Pass the callback to CreateItem
+                            setEditItem={setEditPrice}
+                          />
+                        </div>
+                        {field.state.value !== undefined ? (
+                          <DisplaySelectedItems<Price>
+                            selectedItems={selectedPrice ? [selectedPrice] : []}
+                            updateItems={(updatedItems) => {
+                              setSelectedPrice(
+                                updatedItems[0]
+                              )
+                              field.handleChange(updatedItems[0]?.id ?? -1)
+                            }}
+                          />
+                          // <SelectedSizeDisplay
+
+                          // />
+                        ) : null}
+
+                      </div>
+                    )}
+                  />
+                </div>
+                <div className='flex flex-row  gap-10'>
+                  <form.Field
+                    name="categoryIds"
+                    // eslint-disable-next-line react/no-children-prop
+                    children={(field) => (
+                      <div>
+                        <label className="mb-2 block text-sm font-bold text-gray-700">
+                          Categories
+                        </label>
+                        <div className='flex flex-row gap-3'>
+                          <CheckboxDropdown<Category>
+                            multiple={true}
+                            name='Categories'
+                            items={categories ?? []} // Pass your size items here
+                            value={selectedCategories} // Pass the current value from the form field
+                            onChange={(selectedItems) => {
+                              setSelectedCategories(selectedItems)
+                              field.handleChange(selectedItems.map(item => item.id) as unknown as never[])
+                            }} // Pass the onChange handler from the form field
+                            onEditItem={(item: Category) => {
+                              console.log("Edit Item: ", item)
+                              // const changeSize = api.sizeRouter.updateSize.useMutation()
+                              setEditCategory(item);
+                            }}
+                          />
+                          <CreateItem
+                            <Category>
+                            name='Categories'
+                            item={editCategory ?? { id: -1, name: "", description: "" }}
+                            createItem={({ name, description }) => createCategory.mutate({ name, description })}
+                            deleteItem={deleteCategory}
+                            refreshItem={refreshCategories}
+                            isModalOpen={isCategoryModalOpen}
+                            setModalOpen={setCategoryModalOpen}
+                            updateItem={(category: Category) => updateCategory(category)}
+                            handleChange={async (updatedCategory: Category) => {
+                              const updatedCategories = categories?.map(category =>
+                                category.id === updatedCategory.id ? updatedCategory : category
+                              );
+                              // Update form state here
+                              field.handleChange(updatedCategories as unknown as never[] ?? [] as unknown as never[]);
+                              await refreshCategories()
+                            }
+                            } // Pass the callback to CreateItem
+
+                            setEditItem={setEditCategory}
+                          />
+                        </div>
+
+                        {selectedCategories && selectedCategories.length > 0 ? (
+                          <DisplaySelectedItems<Category>
+                            selectedItems={selectedCategories}
+                            updateItems={(updatedItems) => {
+                              field.handleChange(updatedItems.map(item => item.id) as unknown as never[])
+                              setSelectedCategories(updatedItems)
+                            }}
+                          />
+                          // <SelectedSizeDisplay
+
+                          // />
+                        ) : <div>no categories selected </div>}
+
+                      </div>
+                    )}
+                  />
+                  <form.Field
+                    name="capsuleId"
+                    // eslint-disable-next-line react/no-children-prop
+                    children={(field) => (
+                      <div>
+                        <label className="mb-2 block text-sm font-bold text-gray-700">
+                          Capsule
+                        </label>
+                        <div className='flex flex-row gap-3'>
+                          <CheckboxDropdown<Omit<Capsule, 'updatedAt' | 'createdAt'>>
+                            name='Capsules'
+                            items={capsules ?? []} // Pass your size items here
+                            value={selectedCapsule ? [selectedCapsule] : []} // Pass the current value from the form field
+                            onChange={(selectedItems) => {
+                              console.log("Selected Items: ", selectedItems)
+                              console.log("Selected Capsule: ", selectedCapsule)
+                              setSelectedCapsule(selectedItems[0])
+
+                              field.handleChange(selectedItems[0]?.id ?? -1)
+                            }
+                            } // Pass the onChange handler from the form field
+                            onEditItem={(item: Omit<Capsule, 'updatedAt' | 'createdAt'>) => {
+                              console.log("Edit Capsule: ", item)
+                              // const changeSize = api.sizeRouter.updateSize.useMutation()
+                              setEditCapsule(item);
+                            }}
+                          />
+                          <CreateItem
+                            <Omit<Capsule, 'updatedAt' | 'createdAt'>>
+                            name='Capsules'
+                            item={editCapsule ?? { id: -1, name: "", description: "" }}
+                            createItem={({ name, description }) => createCapsule.mutate({ name, description })}
+                            deleteItem={deleteCapsule}
+                            refreshItem={refreshCapsules}
+                            isModalOpen={isCapsuleModalOpen}
+                            setModalOpen={setCapsuleModalOpen}
+                            updateItem={(capsule: Omit<Capsule, 'createdAt' | 'updatedAt'>) => updateCapsule(capsule)}
+                            handleChange={async (updatedCapsule: Omit<Capsule, 'updatedAt' | 'createdAt'>) => {
+                              // const updatedCapsules = capsules?.map(capsule =>
+                              //   capsule.id === updatedCapsule.id ? updatedCapsule : capsule
+                              // );
+                              // Update form state here
+                              field.handleChange(updatedCapsule.id);
+                              await refreshCapsules()
+                            }
+                            } // Pass the callback to CreateItem
+
+                            setEditItem={setEditCapsule}
+                          />
+                        </div>
+
+                        {selectedCapsule ? (
+                          <DisplaySelectedItems<Omit<Capsule, 'updatedAt' | 'createdAt'>>
+                            selectedItems={[selectedCapsule]}
+                            updateItems={(updatedItems) => {
+                              setSelectedCapsule(updatedItems[0])
+                              field.handleChange(updatedItems[0]?.id ?? -1)
+                            }}
+                          />
+                        ) : (<div>no categories selected </div>)
                         }
-                        } // Pass the callback to CreateItem
-
-                        setEditItem={setEditSize}
-                      />
-                    </div>
-
-                    {field.state.value !== undefined ? (
-                      <DisplaySelectedItems<Size>
-                        selectedItems={selectedSizes ?? []}
-                        updateItems={(updatedItems) => setSelectedSizes(updatedItems)}
-                      />
-                      // <SelectedSizeDisplay
-
-                      // />
-                    ) : <div>no sizes</div>}
-
-                  </div>
-                )}
-              />
-              <form.Field
-                name="priceId"
-                // eslint-disable-next-line react/no-children-prop
-                children={(field) => (
-                  <div>
-                    <label className="mb-2 block text-sm font-bold text-gray-700">
-                      Price
-                    </label>
-                    <div className='flex flex-row gap-3'>
-                      <CreateItem
-                        <Price>
-                        name='Price'
-                        item={editPrice ?? { id: -1, name: "", description: "", price: 0, stripeId: "" }}
-                        createItem={({ name, description, stripeId, price }) => createPrice.mutate({ name, description, stripeId, price })}
-                        deleteItem={deletePrice}
-                        refreshItem={refreshPrices}
-                        isModalOpen={isPriceModalOpen}
-                        setModalOpen={setPriceModalOpen}
-                        updateItem={(price: Price) => updatePrice(price)}
-                        handleChange={async (updatedPrice: Price) => {
-                          setSelectedPrice(updatedPrice)
-                          // const updatedPrices = prices?.map(price =>
-                          //   price.id === updatedPrice.id ? updatedPrice : price
-                          // );
-                          // Update form state here
-                          field.handleChange(selectedPrice?.id ?? -1);
-                          await refreshPrices()
-                        }
-                        } // Pass the callback to CreateItem
-                        setEditItem={setEditPrice}
-                      />
-                    </div>
-                    {field.state.value !== undefined ? (
-                      <DisplaySelectedItems<Price>
-                        selectedItems={selectedPrice ? [selectedPrice] : []}
-                        updateItems={(updatedItems) => {
-                          setSelectedPrice(
-                            updatedItems[0]
-                          )
-                          field.handleChange(updatedItems[0]?.id ?? -1)
-                        }}
-                      />
-                      // <SelectedSizeDisplay
-
-                      // />
-                    ) : null}
-
-                  </div>
-                )}
-              />
-              <form.Field
-                name="categoryIds"
-                // eslint-disable-next-line react/no-children-prop
-                children={(field) => (
-                  <div>
-                    <label className="mb-2 block text-sm font-bold text-gray-700">
-                      Categories
-                    </label>
-                    <div className='flex flex-row gap-3'>
-                      <CheckboxDropdown<Category>
-                        multiple={true}
-                        name='Categories'
-                        items={categories ?? []} // Pass your size items here
-                        value={selectedCategories} // Pass the current value from the form field
-                        onChange={(selectedItems) => {
-                          setSelectedCategories(selectedItems)
-                          field.handleChange(selectedItems.map(item => item.id) as unknown as never[])
-                        }} // Pass the onChange handler from the form field
-                        onEditItem={(item: Category) => {
-                          console.log("Edit Item: ", item)
-                          // const changeSize = api.sizeRouter.updateSize.useMutation()
-                          setEditCategory(item);
-                        }}
-                      />
-                      <CreateItem
-                        <Category>
-                        name='Categories'
-                        item={editCategory ?? { id: -1, name: "", description: "" }}
-                        createItem={({ name, description }) => createCategory.mutate({ name, description })}
-                        deleteItem={deleteCategory}
-                        refreshItem={refreshCategories}
-                        isModalOpen={isCategoryModalOpen}
-                        setModalOpen={setCategoryModalOpen}
-                        updateItem={(category: Category) => updateCategory(category)}
-                        handleChange={async (updatedCategory: Category) => {
-                          const updatedCategories = categories?.map(category =>
-                            category.id === updatedCategory.id ? updatedCategory : category
-                          );
-                          // Update form state here
-                          field.handleChange(updatedCategories as unknown as never[] ?? [] as unknown as never[]);
-                          await refreshCategories()
-                        }
-                        } // Pass the callback to CreateItem
-
-                        setEditItem={setEditCategory}
-                      />
-                    </div>
-
-                    {selectedCategories && selectedCategories.length > 0 ? (
-                      <DisplaySelectedItems<Category>
-                        selectedItems={selectedCategories}
-                        updateItems={(updatedItems) => {
-                          field.handleChange(updatedItems.map(item => item.id) as unknown as never[])
-                          setSelectedCategories(updatedItems)
-                        }}
-                      />
-                      // <SelectedSizeDisplay
-
-                      // />
-                    ) : <div>no categories selected </div>}
-
-                  </div>
-                )}
-              />
-              <form.Field
-                name="capsuleId"
-                // eslint-disable-next-line react/no-children-prop
-                children={(field) => (
-                  <div>
-                    <label className="mb-2 block text-sm font-bold text-gray-700">
-                      Capsule
-                    </label>
-                    <div className='flex flex-row gap-3'>
-                      <CheckboxDropdown<Omit<Capsule, 'updatedAt' | 'createdAt'>>
-                        name='Capsules'
-                        items={capsules ?? []} // Pass your size items here
-                        value={selectedCapsule ? [selectedCapsule] : []} // Pass the current value from the form field
-                        onChange={(selectedItems) => {
-                          console.log("Selected Items: ", selectedItems)
-                          console.log("Selected Capsule: ", selectedCapsule)
-                          setSelectedCapsule(selectedItems[0])
-
-                          field.handleChange(selectedCapsule?.id ?? -1)
-                        }
-                        } // Pass the onChange handler from the form field
-                        onEditItem={(item: Omit<Capsule, 'updatedAt' | 'createdAt'>) => {
-                          console.log("Edit Capsule: ", item)
-                          // const changeSize = api.sizeRouter.updateSize.useMutation()
-                          setEditCapsule(item);
-                        }}
-                      />
-                      <CreateItem
-                        <Omit<Capsule, 'updatedAt' | 'createdAt'>>
-                        name='Capsules'
-                        item={editCapsule ?? { id: -1, name: "", description: "" }}
-                        createItem={({ name, description }) => createCapsule.mutate({ name, description })}
-                        deleteItem={deleteCapsule}
-                        refreshItem={refreshCapsules}
-                        isModalOpen={isCapsuleModalOpen}
-                        setModalOpen={setCapsuleModalOpen}
-                        updateItem={(capsule: Omit<Capsule, 'createdAt' | 'updatedAt'>) => updateCapsule(capsule)}
-                        handleChange={async (updatedCapsule: Omit<Capsule, 'updatedAt' | 'createdAt'>) => {
-                          // const updatedCapsules = capsules?.map(capsule =>
-                          //   capsule.id === updatedCapsule.id ? updatedCapsule : capsule
-                          // );
-                          // Update form state here
-                          field.handleChange(updatedCapsule.id);
-                          await refreshCapsules()
-                        }
-                        } // Pass the callback to CreateItem
-
-                        setEditItem={setEditCapsule}
-                      />
-                    </div>
-
-                    {selectedCapsule ? (
-                      <DisplaySelectedItems<Omit<Capsule, 'updatedAt' | 'createdAt'>>
-                        selectedItems={[selectedCapsule]}
-                        updateItems={(updatedItems) => {
-                          setSelectedCapsule(updatedItems[0])
-                          field.handleChange(updatedItems[0]?.id ?? -1)
-                        }}
-                      />
-                    ) : (<div>no categories selected </div>)
-                    }
-                  </div>
-                )}
-              />
+                      </div>
+                    )}
+                  />
+                  
+                </div>
               </div>
+
             </div>
+
+
+
+          </div>
+          <button className='mt-5 w-28 bg-black text-white p-2 text-md' type="submit">Create Product</button>
           
-          <button type="submit">Submit</button>
         </form>
       </form.Provider>
     </div>
@@ -567,7 +582,6 @@ function CreateItem<T extends Item>({
   const [form, setForm] = useState<T>(item);
 
   useEffect(() => {
-    console.log("item", item);
     setForm(item);
   }, [item]);
 
@@ -603,9 +617,9 @@ function CreateItem<T extends Item>({
         <button
           type="button"
           onClick={() => setModalOpen(true)}
-          className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+          className="w-20 bg-black text-white p-1 text-sm"
         >
-          {`Create ${name}`}
+          {`Create`}
         </button>
         <Modal
           id={name}

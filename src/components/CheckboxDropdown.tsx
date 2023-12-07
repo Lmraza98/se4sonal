@@ -68,9 +68,9 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
       <button
         type="button"
         onClick={() => setIsOpen(true)}
-        className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:ring-opacity-50"
+        className="w-20 bg-black text-white p-1 text-sm"
       >
-        Select {name}
+        Select
       </button>
       {isOpen && (
         <ul ref={checkboxRef} className="absolute z-10 w-52 bg-white border border-gray-200 mt-1 rounded shadow-lg">
@@ -94,7 +94,7 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
                 ) : (
                   <button 
                     type="button"
-                    className="w-full text-left"
+                    className="w-20 bg-black text-white p-1 text-sm"
                     onClick={() => handleSingleChange(item)}
                   >
                     {item.name}
@@ -102,7 +102,7 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
                 )}
                 {(
                   <button 
-                    className="ml-auto text-blue-500 hover:text-blue-700"
+                    className="ml-auto w-20 bg-black text-white p-1 text-sm"
                     type='button' 
                     onClick={() => onEditItem(item)}
                   >

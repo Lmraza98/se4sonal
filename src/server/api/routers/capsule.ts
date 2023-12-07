@@ -3,6 +3,23 @@ import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const capsuleRouter = createTRPCRouter({
+    getCapsule: publicProcedure
+        .input(
+            z.object({
+                id: z.number().min(1).max(100),
+            }),
+        )
+        .query(async ({ ctx, input }) => {
+            const capsule = await ctx.db.capsule.findUnique({
+                where: {
+                    id: input.id,
+                },
+            });
+            if (!capsule) {
+                throw new Error("Capsule not found");
+            }
+            return capsule;
+        }),
     getCapsules: publicProcedure
         .query(async ({ ctx }) => {
             const capsules = await ctx.db.capsule.findMany({

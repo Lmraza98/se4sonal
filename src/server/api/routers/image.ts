@@ -20,9 +20,30 @@ export const imageRouter = createTRPCRouter({
             }
             return image;
         }),
-    getImages:  publicProcedure
+    getAllImages:  publicProcedure
         .query(async ({ ctx }) => {
             const images = await ctx.db.image.findMany();
+            if (!images) {
+                throw new Error("Images not found");
+            }
+            return images;
+        }),
+    getImages:  publicProcedure
+        .input(
+            z.object({
+                ids: z.array(z.number().min(1).max(100)),
+            })
+        )
+        .query(async ({ ctx, input }) => {
+            const images = await ctx.db.image.findMany(
+                {
+                    where: {
+                        id: {
+                            in: input.ids,
+                        },
+                    },
+                },
+            );
             if (!images) {
                 throw new Error("Images not found");
             }

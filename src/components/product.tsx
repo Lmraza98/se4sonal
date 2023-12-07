@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import Image from 'next/image';
+import { api } from "~/trpc/react";
 
 import type { Size } from '@prisma/client';
 
@@ -13,8 +14,8 @@ interface ProductProps {
     product: {
         name: string, 
         description: string,
-        mainImage: ImageType,
-        images: ImageType[],
+        mainImageId: number,
+        imageIds: number[],
         sizes: Omit<Size, 'description'>[]
         price: number,
         capsule: {
@@ -27,17 +28,25 @@ interface ProductProps {
 
 const Product: React.FC<ProductProps> = ({ product, setSize }) => {
 
-    if(!product) return <div>No Product</div>;
+
 
     const {
         name,
         description,
-        mainImage,
-        images,
+        mainImageId,
+        imageIds,
         sizes,
         price,
         capsule
     } = product;
+
+    if(!product) return <div>No Product</div>;
+    const capsuleQuery = api.capsuleRouter.getCapsule.useQuery({id: capsule?.id})
+
+    console.log("ProductPreview imageIds: ", imageIds)
+
+    const { data: mainImage, isLoading: mainImageLoading } = api.imageRouter.getImage.useQuery({id: mainImageId});
+    const { data: images, isLoading: imagesLoading } = api.imageRouter.getImages.useQuery({ids: imageIds});
 
     const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedSize = sizes.find(size => size.id.toString() === event.target.value);
@@ -51,16 +60,20 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
             <div className='h-full flex flex-col w-2/5 gap-5'>
                 <h1 className='text-[21px] font-sans'>{name}</h1>
                 <section className='flex flex-col gap-3'>
-                    <span >{capsule.name}</span>
+                    <span >{capsuleQuery.data?.name ?? "didnt work"}</span>
                     <p className='text-xs'>{description}</p>
                 </section>
                 <section>
-                    <div>
-                        {images.length > 0 ?
-                            images.map(image => (
-                                <Image key={image.id} src={image.url} width={150} height={150}  />
-                            )) :
-                            <div>No Images</div>
+                    <div className='flex flex-row gap-5'>
+                        {
+                            imagesLoading ? <div>Loading...</div> :
+                            images ?
+                            (
+                                images.map(image => (
+                                    <Image key={image.id} src={image.url} width={40} height={40}  />
+                                )) 
+                            )
+                            : <div>No Main Image</div>
                         }
                     </div>
                 </section>
@@ -107,7 +120,7 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
                 </section> */}
             </div>
             <div className='h-full flex flex-col w-3/5'>
-                {mainImage !==null  ?
+                {mainImage ?
                     <Image src={mainImage.url} width={500} height={500} />
                     : <div>No Main Image</div>
                 }
