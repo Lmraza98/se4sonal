@@ -13,7 +13,7 @@ export const ImagesWithPagination: React.FC<Props> = ({ images, onSelect }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [mainImage, setMainImage] = useState<number | null>(null);
   const [otherImages, setOtherImages] = useState<number[]>([]);
-  const itemsPerPage = 10;
+  const itemsPerPage = 5;
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;

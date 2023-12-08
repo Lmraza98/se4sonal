@@ -179,3 +179,885 @@
 2023-12-07 16:54:37.365 EST [44624] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.205 s, sync=0.001 s, total=0.208 s; sync files=3, longest=0.001 s, average=0.001 s; distance=1 kB, estimate=3 kB
 2023-12-07 16:59:37.367 EST [44624] LOG:  checkpoint starting: time
 2023-12-07 16:59:37.781 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.405 s, sync=0.003 s, total=0.414 s; sync files=5, longest=0.002 s, average=0.001 s; distance=2 kB, estimate=3 kB
+2023-12-07 17:04:37.783 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 17:04:37.890 EST [44624] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.102 s, sync=0.002 s, total=0.107 s; sync files=1, longest=0.002 s, average=0.002 s; distance=1 kB, estimate=2 kB
+2023-12-07 17:14:37.901 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 17:14:38.318 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.409 s, sync=0.003 s, total=0.418 s; sync files=5, longest=0.002 s, average=0.001 s; distance=4 kB, estimate=4 kB
+2023-12-07 17:19:37.322 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 17:19:37.430 EST [44624] LOG:  checkpoint complete: wrote 1 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.103 s, sync=0.002 s, total=0.109 s; sync files=1, longest=0.002 s, average=0.002 s; distance=3 kB, estimate=4 kB
+2023-12-07 21:04:37.468 EST [44624] LOG:  checkpoint starting: time
+2023-12-07 21:04:37.884 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.410 s, sync=0.003 s, total=0.417 s; sync files=5, longest=0.002 s, average=0.001 s; distance=4 kB, estimate=4 kB
+2023-12-08 11:45:21.470 EST [81701] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 11:45:21.493 EST [81703] ERROR:  relation "_prisma_migrations" does not exist at character 126
+2023-12-08 11:45:21.493 EST [81703] STATEMENT:  SELECT "id", "checksum", "finished_at", "migration_name", "logs", "rolled_back_at", "started_at", "applied_steps_count" FROM "_prisma_migrations" ORDER BY "started_at" ASC
+2023-12-08 11:45:21.911 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:45:21.919 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.001 s, total=0.008 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4290 kB, estimate=4290 kB
+2023-12-08 11:45:22.400 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:45:22.403 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4291 kB, estimate=4291 kB
+2023-12-08 11:45:56.454 EST [82083] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 11:45:56.483 EST [82085] ERROR:  relation "_prisma_migrations" does not exist at character 126
+2023-12-08 11:45:56.483 EST [82085] STATEMENT:  SELECT "id", "checksum", "finished_at", "migration_name", "logs", "rolled_back_at", "started_at", "applied_steps_count" FROM "_prisma_migrations" ORDER BY "started_at" ASC
+2023-12-08 11:45:56.654 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:45:56.658 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.002 s, total=0.004 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4291 kB, estimate=4291 kB
+2023-12-08 11:45:57.008 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:45:57.012 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4291 kB, estimate=4291 kB
+2023-12-08 11:46:13.627 EST [82085] ERROR:  table "_prisma_migrations" does not exist
+2023-12-08 11:46:13.627 EST [82085] STATEMENT:  DROP TABLE _prisma_migrations
+2023-12-08 11:46:13.789 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:46:13.811 EST [44624] LOG:  checkpoint complete: wrote 79 buffers (0.5%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.007 s, sync=0.006 s, total=0.023 s; sync files=45, longest=0.001 s, average=0.001 s; distance=4829 kB, estimate=4829 kB
+2023-12-08 11:47:03.177 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:47:03.184 EST [44624] LOG:  checkpoint complete: wrote 52 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.003 s, total=0.007 s; sync files=19, longest=0.001 s, average=0.001 s; distance=4640 kB, estimate=4810 kB
+2023-12-08 11:47:21.947 EST [83124] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 11:47:22.143 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:47:22.146 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4298 kB, estimate=4759 kB
+2023-12-08 11:47:22.539 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:47:22.551 EST [44624] LOG:  checkpoint complete: wrote 21 buffers (0.1%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.003 s, sync=0.005 s, total=0.013 s; sync files=11, longest=0.001 s, average=0.001 s; distance=4852 kB, estimate=4852 kB
+2023-12-08 11:47:23.079 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:47:23.098 EST [44624] LOG:  checkpoint complete: wrote 102 buffers (0.6%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.005 s, sync=0.013 s, total=0.019 s; sync files=135, longest=0.002 s, average=0.001 s; distance=5402 kB, estimate=5402 kB
+2023-12-08 11:47:23.514 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 11:47:23.517 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4750 kB, estimate=5336 kB
+2023-12-08 11:47:46.258 EST [83386] ERROR:  column Price.stripeId does not exist at character 56
+2023-12-08 11:47:46.258 EST [83386] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 11:47:48.572 EST [83388] ERROR:  column Price.stripeId does not exist at character 56
+2023-12-08 11:47:48.572 EST [83388] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 11:48:01.755 EST [83387] ERROR:  column Price.stripeId does not exist at character 56
+2023-12-08 11:48:01.755 EST [83387] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 11:52:23.517 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 11:52:31.130 EST [44624] LOG:  checkpoint complete: wrote 76 buffers (0.5%); 0 WAL file(s) added, 0 removed, 0 recycled; write=7.602 s, sync=0.007 s, total=7.613 s; sync files=22, longest=0.004 s, average=0.001 s; distance=518 kB, estimate=4855 kB
+2023-12-08 12:12:36.887 EST [99230] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 12:12:37.380 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:12:37.389 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.003 s, sync=0.002 s, total=0.009 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4758 kB, estimate=4845 kB
+2023-12-08 12:12:37.876 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:12:37.887 EST [44624] LOG:  checkpoint complete: wrote 24 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.004 s, sync=0.004 s, total=0.011 s; sync files=10, longest=0.001 s, average=0.001 s; distance=4823 kB, estimate=4843 kB
+2023-12-08 12:12:38.215 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:12:38.218 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4751 kB, estimate=4834 kB
+2023-12-08 12:12:52.396 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:12:52.402 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.006 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4751 kB, estimate=4825 kB
+2023-12-08 12:13:14.751 EST [99724] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 12:13:15.028 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:15.033 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4751 kB, estimate=4818 kB
+2023-12-08 12:13:15.459 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:15.463 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.005 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4752 kB, estimate=4811 kB
+2023-12-08 12:13:15.935 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:15.944 EST [44624] LOG:  checkpoint complete: wrote 10 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.003 s, sync=0.004 s, total=0.009 s; sync files=10, longest=0.001 s, average=0.001 s; distance=4781 kB, estimate=4808 kB
+2023-12-08 12:13:32.488 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:32.492 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.001 s, sync=0.001 s, total=0.005 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4752 kB, estimate=4803 kB
+2023-12-08 12:13:57.678 EST [612] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 12:13:58.064 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:58.067 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4760 kB, estimate=4798 kB
+2023-12-08 12:13:58.558 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:58.562 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.001 s, total=0.004 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4760 kB, estimate=4795 kB
+2023-12-08 12:13:59.025 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:59.028 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4755 kB, estimate=4791 kB
+2023-12-08 12:13:59.467 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:13:59.471 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.001 s, sync=0.001 s, total=0.005 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4754 kB, estimate=4787 kB
+2023-12-08 12:14:52.877 EST [1346] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 12:14:53.394 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:14:53.397 EST [44624] LOG:  checkpoint complete: wrote 5 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=5, longest=0.001 s, average=0.001 s; distance=4756 kB, estimate=4784 kB
+2023-12-08 12:14:53.912 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:14:53.916 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.004 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4754 kB, estimate=4781 kB
+2023-12-08 12:14:54.391 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:14:54.397 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.002 s, sync=0.002 s, total=0.006 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4754 kB, estimate=4778 kB
+2023-12-08 12:15:06.157 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:15:06.159 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4755 kB, estimate=4776 kB
+2023-12-08 12:15:14.008 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:15:14.013 EST [44624] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.002 s, sync=0.002 s, total=0.005 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4778 kB, estimate=4778 kB
+2023-12-08 12:15:14.453 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:15:14.456 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4755 kB, estimate=4776 kB
+2023-12-08 12:15:14.892 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:15:14.896 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 1 recycled; write=0.001 s, sync=0.001 s, total=0.005 s; sync files=6, longest=0.001 s, average=0.001 s; distance=4758 kB, estimate=4774 kB
+2023-12-08 12:15:15.326 EST [44624] LOG:  checkpoint starting: immediate force wait
+2023-12-08 12:15:15.329 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=4, longest=0.001 s, average=0.001 s; distance=4756 kB, estimate=4772 kB
+2023-12-08 12:16:03.120 EST [2254] LOG:  could not receive data from client: Connection reset by peer
+2023-12-08 12:20:15.332 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 12:20:15.849 EST [44624] LOG:  checkpoint complete: wrote 6 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.503 s, sync=0.001 s, total=0.517 s; sync files=6, longest=0.001 s, average=0.001 s; distance=31 kB, estimate=4298 kB
+2023-12-08 12:34:09.694 EST [13913] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:34:09.694 EST [13913] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:34:13.149 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:34:13.149 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:35:15.765 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 12:35:15.986 EST [44624] LOG:  checkpoint complete: wrote 2 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.205 s, sync=0.002 s, total=0.222 s; sync files=2, longest=0.002 s, average=0.001 s; distance=15 kB, estimate=3870 kB
+2023-12-08 12:38:54.555 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:38:54.555 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:38:55.817 EST [13350] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:38:55.817 EST [13350] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:38:56.883 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:38:56.883 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:38:59.109 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:38:59.109 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:39:03.197 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:39:03.197 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:40:15.982 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 12:40:16.597 EST [44624] LOG:  checkpoint complete: wrote 7 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.608 s, sync=0.004 s, total=0.616 s; sync files=5, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=3483 kB
+2023-12-08 12:42:28.985 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:28.985 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:30.046 EST [13350] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:30.046 EST [13350] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:32.106 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:32.106 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:36.166 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:36.166 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:47.992 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:47.992 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:50.390 EST [16985] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:50.390 EST [16985] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:51.634 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:51.634 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:53.674 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:53.674 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:57.714 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:57.714 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:58.340 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:58.340 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:42:59.849 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:42:59.849 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:00.970 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:00.970 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:03.009 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:03.009 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:07.058 EST [16986] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:07.058 EST [16986] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:38.456 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:38.456 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:39.604 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:39.604 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:41.641 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:41.641 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:43:45.670 EST [13920] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:43:45.670 EST [13920] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:45:15.592 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 12:45:15.902 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.304 s, sync=0.002 s, total=0.310 s; sync files=4, longest=0.002 s, average=0.001 s; distance=0 kB, estimate=3135 kB
+2023-12-08 12:49:03.629 EST [23531] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:49:03.629 EST [23531] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:55:01.759 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:55:01.759 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:27.456 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:27.456 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:31.575 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:31.575 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:31.737 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:31.737 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:32.796 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:32.796 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:34.862 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:34.862 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:56:39.006 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:56:39.006 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:57:04.473 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:57:04.473 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:57:05.544 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:57:05.544 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:57:07.603 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:57:07.603 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:58:00.422 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:58:00.422 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:58:02.562 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:58:02.562 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:58:03.650 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:58:03.650 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:58:05.749 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:58:05.749 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:58:09.778 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:58:09.778 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 12:59:15.763 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 12:59:15.763 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:01:58.557 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:01:58.557 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:04:30.141 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:04:30.141 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:04:34.645 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:04:34.645 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:14.242 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:14.242 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:15.460 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:15.460 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:17.784 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:17.784 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:22.016 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:22.016 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:24.639 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:24.639 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:25.704 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:25.704 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:27.741 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:27.741 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:05:39.951 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:05:39.951 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:08.171 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:08.171 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:09.330 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:09.330 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:11.377 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:11.377 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:15.936 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:15.936 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:20.684 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:20.684 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:21.870 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:21.870 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:24.072 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:24.072 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:28.116 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:28.116 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:53.844 EST [27414] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:53.844 EST [27414] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:55.665 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:55.665 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:06:57.687 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:06:57.687 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:07:01.708 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:07:01.708 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:07:46.019 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:07:46.019 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:07:47.212 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:07:47.212 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:07:49.254 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:07:49.254 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:08:53.206 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:08:53.206 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:08:54.953 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:08:54.953 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:08:56.067 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:08:56.067 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:08:58.146 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:08:58.146 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:09:02.315 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:09:02.315 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:09:55.781 EST [28337] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:09:55.781 EST [28337] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:09:56.842 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:09:56.842 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:10:15.914 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 13:10:16.225 EST [44624] LOG:  checkpoint complete: wrote 4 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.305 s, sync=0.003 s, total=0.312 s; sync files=4, longest=0.002 s, average=0.001 s; distance=7 kB, estimate=2822 kB
+2023-12-08 13:12:04.144 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:12:04.144 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:12:08.613 EST [27417] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:12:08.613 EST [27417] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:14:34.144 EST [28336] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:14:34.144 EST [28336] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:14:35.269 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:14:35.269 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:14:37.324 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:14:37.324 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:14:41.364 EST [27416] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:14:41.364 EST [27416] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:15:15.176 EST [44624] LOG:  checkpoint starting: time
+2023-12-08 13:15:16.599 EST [44624] LOG:  checkpoint complete: wrote 15 buffers (0.1%); 0 WAL file(s) added, 0 removed, 0 recycled; write=1.416 s, sync=0.003 s, total=1.424 s; sync files=12, longest=0.001 s, average=0.001 s; distance=2 kB, estimate=2540 kB
+2023-12-08 13:46:53.901 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:46:53.901 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:46:55.401 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:46:55.401 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:46:57.484 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:46:57.484 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:01.518 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:01.518 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:08.801 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:08.801 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:44.734 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:44.734 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:45.947 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:45.947 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:48.020 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:48.020 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:47:52.097 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:47:52.097 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:51:25.589 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:51:25.589 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:51:26.655 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:51:26.655 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:51:29.067 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:51:29.067 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:51:33.107 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:51:33.107 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:52:15.285 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:52:15.285 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:52:16.379 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:52:16.379 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:52:21.071 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:52:21.071 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:52:25.161 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:52:25.161 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:52:56.721 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:52:56.721 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:53:09.026 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:53:09.026 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:53:11.975 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:53:11.975 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:03.442 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:03.442 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:21.724 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:21.724 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:23.224 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:23.224 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:25.427 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:25.427 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:29.563 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:29.563 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:34.319 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:34.319 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:41.009 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:41.009 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:42.185 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:42.185 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:44.233 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:44.233 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:54:48.312 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:54:48.312 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:36.337 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:36.337 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:38.546 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:38.546 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:46.438 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:46.438 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:47.870 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:47.870 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:50.152 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:50.152 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:55:54.287 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:55:54.287 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:01.663 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:01.663 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:02.771 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:02.771 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:04.835 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:04.835 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:08.901 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:08.901 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:26.258 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:26.258 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:27.357 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:27.357 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:29.385 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:29.385 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:57:33.463 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:57:33.463 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:46.855 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:46.855 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:47.959 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:47.959 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:50.024 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:50.024 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:54.090 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:54.090 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:56.808 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:56.808 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 13:59:57.868 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 13:59:57.868 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:00:09.958 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:00:09.958 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:01:20.915 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:01:20.915 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:01:23.826 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:01:23.826 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:01:24.918 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:01:24.918 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:01:26.989 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:01:26.989 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:01:31.105 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:01:31.105 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:27.775 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:27.775 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:29.108 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:29.108 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:31.160 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:31.160 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:35.211 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:35.211 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:40.603 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:40.603 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:41.677 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:41.677 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:43.763 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:43.763 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:02:47.866 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:02:47.866 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:06:46.089 EST [60850] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:06:46.089 EST [60850] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:06:50.595 EST [60851] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:06:50.595 EST [60851] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:06:52.649 EST [60848] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:06:52.649 EST [60848] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:07:03.491 EST [60853] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:07:03.491 EST [60853] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:07:04.732 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:07:04.732 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:07:06.818 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:07:06.818 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:07:10.876 EST [60852] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:07:10.876 EST [60852] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:22:46.175 EST [84577] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:22:46.175 EST [84577] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:22:51.190 EST [84720] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:22:51.190 EST [84720] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:22:53.456 EST [84720] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:22:53.456 EST [84720] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:14.957 EST [84577] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:14.957 EST [84577] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:22.865 EST [84577] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:22.865 EST [84577] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:24.102 EST [84720] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:24.102 EST [84720] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:26.135 EST [85105] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:26.135 EST [85105] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:30.867 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:30.867 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:31.969 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:31.969 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:34.068 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:34.068 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:43.793 EST [84577] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:43.793 EST [84577] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:45.282 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:45.282 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:46.351 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:46.351 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:48.386 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:48.386 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:23:52.421 EST [85104] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:23:52.421 EST [85104] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:31:06.612 EST [90133] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:31:06.612 EST [90133] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:31:08.046 EST [90131] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:31:08.046 EST [90131] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:31:10.090 EST [90131] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:31:10.090 EST [90131] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:31:33.911 EST [90134] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:31:33.911 EST [90134] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:31:35.346 EST [90134] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:31:35.346 EST [90134] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:39:13.766 EST [95256] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:39:13.766 EST [95256] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:39:16.762 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:39:16.762 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:40:26.762 EST [95256] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:40:26.762 EST [95256] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:40:27.960 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:40:27.960 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:40:29.997 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:40:29.997 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:40:34.112 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:40:34.112 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:05.323 EST [95379] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:05.323 EST [95379] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:06.569 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:06.569 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:08.616 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:08.616 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:12.698 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:12.698 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:32.135 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:32.135 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:33.287 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:33.287 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:35.347 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:35.347 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:39.405 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:39.405 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:50.786 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:50.786 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:41:51.912 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:41:51.912 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:44:09.635 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:44:09.635 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:44:55.896 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:44:55.896 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:17.508 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:17.508 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:23.116 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:23.116 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:25.750 EST [96994] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:25.750 EST [96994] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:29.900 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:29.900 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:34.092 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:34.092 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:35.196 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:35.196 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:37.266 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:37.266 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:41.425 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:41.425 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:46:59.470 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:46:59.470 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:47:54.870 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:47:54.870 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:47:56.974 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:47:56.974 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:48:01.017 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:48:01.017 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:49:18.791 EST [1264] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:49:18.791 EST [1264] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:49:19.888 EST [96242] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:49:19.888 EST [96242] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:49:23.724 EST [95380] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:49:23.724 EST [95380] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:57:45.351 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:57:45.351 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:57:49.044 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:57:49.044 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:57:50.141 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:57:50.141 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:57:53.355 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:57:53.355 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:57:57.427 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:57:57.427 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:23.184 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:23.184 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:24.282 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:24.282 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:26.341 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:26.341 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:38.299 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:38.299 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:39.609 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:39.609 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:58:40.712 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:58:40.712 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:59:40.544 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:59:40.544 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:59:50.899 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:59:50.899 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 14:59:51.986 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 14:59:51.986 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:02:42.846 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:02:42.846 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:08.954 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:08.954 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:11.833 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:11.833 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:16.050 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:16.050 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:43.551 EST [8250] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:43.551 EST [8250] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:44.810 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:44.810 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:46.887 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:46.887 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:50.928 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:50.928 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:51.760 EST [8250] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:51.760 EST [8250] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:52.833 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:52.833 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:54.880 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:54.880 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:03:59.036 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:03:59.036 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:14.343 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:14.343 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:15.625 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:15.625 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:17.703 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:17.703 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:21.795 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:21.795 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:23.329 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:23.329 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:24.427 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:24.427 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:26.497 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:26.497 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:49.923 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:49.923 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:51.595 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:51.595 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:04:52.709 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:04:52.709 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:06:50.539 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:06:50.539 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:07:42.673 EST [8249] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:07:42.673 EST [8249] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:13.562 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:13.562 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:15.490 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:15.490 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:17.555 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:17.555 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:22.218 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:22.218 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:49.782 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:49.782 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:08:50.981 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:08:50.981 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:09:26.910 EST [8258] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:09:26.910 EST [8258] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:09:28.512 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:09:28.512 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:09:30.630 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:09:30.630 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:09:34.687 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:09:34.687 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:10:36.479 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:10:36.479 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:05.322 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:05.322 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:07.762 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:07.762 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:11.828 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:11.828 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:23.490 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:23.490 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:24.590 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:24.590 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:52.968 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:52.968 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:11:57.350 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:11:57.350 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:12:05.444 EST [8251] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:12:05.444 EST [8251] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:12:06.553 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:12:06.553 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:13:11.465 EST [8250] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:13:11.465 EST [8250] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:13:15.650 EST [8247] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:13:15.650 EST [8247] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:18:53.427 EST [22459] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:18:53.427 EST [22459] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:18:55.873 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:18:55.873 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:18:58.635 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:18:58.635 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:02.674 EST [22459] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:02.674 EST [22459] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:36.327 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:36.327 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:37.453 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:37.453 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:39.565 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:39.565 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:43.680 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:43.680 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:47.592 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:47.592 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:19:48.666 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:19:48.666 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:20:56.964 EST [22459] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:20:56.964 EST [22459] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:21:01.082 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:21:01.082 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:22:45.979 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:22:45.979 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:22:47.304 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:22:47.304 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:22:49.365 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:22:49.365 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:22:53.426 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:22:53.426 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:35.618 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:35.618 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:37.505 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:37.505 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:40.134 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:40.134 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:44.188 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:44.188 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:44.809 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:44.809 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:45.878 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:45.878 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:47.931 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:47.931 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:54.975 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:54.975 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:57.087 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:57.087 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:23:59.188 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:23:59.188 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:24:03.297 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:24:03.297 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:24:57.439 EST [22459] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:24:57.439 EST [22459] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:01.307 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:01.307 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:03.411 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:03.411 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:07.469 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:07.469 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:09.941 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:09.941 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:11.752 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:11.752 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:25:59.274 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:25:59.274 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:26:03.800 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:26:03.800 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:26:30.642 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:26:30.642 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:26:31.881 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:26:31.881 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:26:55.104 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:26:55.104 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:09.005 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:09.005 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:12.003 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:12.003 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:16.046 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:16.046 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:41.534 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:41.534 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:42.864 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:42.864 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:44.926 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:44.926 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:27:48.973 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:27:48.973 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:28:50.354 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:28:50.354 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:28:52.114 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:28:52.114 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:28:54.336 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:28:54.336 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:28:58.391 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:28:58.391 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:29:01.501 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:29:01.501 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:29:02.864 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:29:02.864 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:29:04.984 EST [22572] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:29:04.984 EST [22572] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:31:26.395 EST [22573] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:31:26.395 EST [22573] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:31:28.247 EST [22459] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:31:28.247 EST [22459] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:31:29.377 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:31:29.377 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:34:12.946 EST [22460] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:34:12.946 EST [22460] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:41:17.796 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:41:17.796 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:41:18.887 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:41:18.887 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:41:20.011 EST [37630] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:41:20.011 EST [37630] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:44:38.763 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:44:38.763 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:44:42.960 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:44:42.960 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:18.967 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:18.967 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:20.568 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:20.568 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:22.723 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:22.723 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:53.819 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:53.819 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:56.246 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:56.246 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:57.373 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:57.373 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:45:59.483 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:45:59.483 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:46:03.564 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:46:03.564 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:50:49.142 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:50:49.142 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:50:50.938 EST [44086] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:50:50.938 EST [44086] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:50:52.989 EST [44086] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:50:52.989 EST [44086] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:50:57.150 EST [44086] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:50:57.150 EST [44086] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:53:29.254 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:53:29.254 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:53:31.437 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:53:31.437 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:53:33.506 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:53:33.506 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:56:36.797 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:56:36.797 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:56:40.346 EST [44086] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:56:40.346 EST [44086] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:56:41.785 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:56:41.785 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 15:56:43.863 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 15:56:43.863 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:00:06.581 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:00:06.581 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:02:56.421 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:02:56.421 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:02:57.656 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:02:57.656 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:00.686 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:00.686 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:04.868 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:04.868 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:21.807 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:21.807 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:22.879 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:22.879 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:25.069 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:25.069 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:03:42.787 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:03:42.787 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:10.043 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:10.043 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:11.140 EST [52592] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:11.140 EST [52592] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:13.763 EST [52592] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:13.763 EST [52592] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:17.821 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:17.821 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:29.716 EST [52592] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:29.716 EST [52592] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:30.785 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:30.785 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:32.886 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:32.886 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:04:36.985 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:04:36.985 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:22.446 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:22.446 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:23.601 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:23.601 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:26.041 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:26.041 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:30.118 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:30.118 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:37.054 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:37.054 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:08:38.145 EST [37628] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:08:38.145 EST [37628] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:10:20.015 EST [46015] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:10:20.015 EST [46015] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:10:24.869 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:10:24.869 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:06.358 EST [22457] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:06.358 EST [22457] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:07.523 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:07.523 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:09.639 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:09.639 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:13.718 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:13.718 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:43.164 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:43.164 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:45.068 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:45.068 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:47.149 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:47.149 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:11:51.201 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:11:51.201 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:17:04.101 EST [61964] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:17:04.101 EST [61964] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:17:05.275 EST [61966] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:17:05.275 EST [61966] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:17:07.845 EST [61966] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:17:07.845 EST [61966] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:17:11.940 EST [61964] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:17:11.940 EST [61964] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:19:09.323 EST [61964] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:19:09.323 EST [61964] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:19:10.480 EST [61963] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:19:10.480 EST [61963] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:19:12.523 EST [61966] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:19:12.523 EST [61966] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:19:16.637 EST [61966] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:19:16.637 EST [61966] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:20:02.562 EST [61966] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:20:02.562 EST [61966] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:20:04.684 EST [52593] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:20:04.684 EST [52593] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:20:06.827 EST [61964] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:20:06.827 EST [61964] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1
+2023-12-08 16:20:10.885 EST [61964] ERROR:  column Price.price does not exist at character 85
+2023-12-08 16:20:10.885 EST [61964] STATEMENT:  SELECT "public"."Price"."id", "public"."Price"."name", "public"."Price"."stripeId", "public"."Price"."price", "public"."Price"."description" FROM "public"."Price" WHERE 1=1 OFFSET $1

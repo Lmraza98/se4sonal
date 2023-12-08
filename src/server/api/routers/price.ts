@@ -15,9 +15,9 @@ export const priceRouter = createTRPCRouter({
     createPrice: publicProcedure
         .input(
             z.object({
-                price: z.number().min(1).max(1000000000),
-                description: z.string().min(1).max(50),
                 name: z.string().min(1).max(50),
+                currency: z.string().min(1).max(50),
+                unitAmmount: z.number().min(1).max(1000000000),
                 stripeId: z.string().min(1).max(50),
             }),
         )
@@ -35,11 +35,10 @@ export const priceRouter = createTRPCRouter({
                 // }
                 const price = await ctx.db.price.create({
                    data: {
-                    description: input.description,
+                    unitAmmount: input.unitAmmount,
                     stripeId: input.stripeId,
-                    price: input.price,
-                    name: input.name,
-
+                    currency: input.currency,
+                    name: input.name
                    }
                 });
                 return price;

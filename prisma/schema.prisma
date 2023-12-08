@@ -145,9 +145,11 @@ model Category {
 model Price {
   id          Int       @id @default(autoincrement())
   name        String
+  // price       Float
+  unitAmmount    Int
+  currency    String
   stripeId    String
-  price       Float
-  description String
+  // description String
   products    Product[]      @relation("ProductToPrice")
 }
 

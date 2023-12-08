@@ -82,12 +82,12 @@ export default function CreateProductPage() {
       description: "",
       stock: 0,
       active: false,
-      productSizeIds: [-1],
+      productSizeIds: [],
       priceId: -1,
       capsuleId: -1,
-      categoryIds: [-1],
+      categoryIds: [],
       mainImageId: -1,
-      imageIds: [-1],
+      imageIds: [],
     },
     onChange: (values):ValidationError => {
       console.log("Form Values: ", values);
@@ -196,17 +196,26 @@ export default function CreateProductPage() {
         },
         mainImageId: selectedMainImage ?? -1,
         imageIds: selectedOtherImages,
-        sizes: [],
+        sizes: formState?.productSizeIds !== undefined ?? formState?.productSizeIds.map(id => {
+          return {
+            id: id,
+            name: sizes?.find(size => size.id === id)?.name ?? "",
+          }
+        }
+        ) ?? [],
       });
     
    },[formState, selectedMainImage, selectedOtherImages])
 
+   console.log("TYPE", setViewProduct)
+
   return (
     <ProductDataProvider>
-    <div className="flex h-screen flex-row">
+    <div className="flex flex-row">
       <div className='h-full w-full flex flex-col justify-center align-middle p-20'>
         <CreateProductForm
           form={form}
+          setViewProduct={setViewProduct}
           sizes={sizes}
           capsules={capsules}
           prices={prices}

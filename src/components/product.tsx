@@ -27,9 +27,7 @@ interface ProductProps {
 }
 
 const Product: React.FC<ProductProps> = ({ product, setSize }) => {
-
-
-
+    if(!product) return <div>No Product</div>;
     const {
         name,
         description,
@@ -40,7 +38,7 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
         capsule
     } = product;
 
-    if(!product) return <div>No Product</div>;
+    console.log("sizes", sizes)
     const capsuleQuery = api.capsuleRouter.getCapsule.useQuery({id: capsule?.id})
 
     console.log("ProductPreview imageIds: ", imageIds)
@@ -49,6 +47,7 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
     const { data: images, isLoading: imagesLoading } = api.imageRouter.getImages.useQuery({ids: imageIds});
 
     const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log("event.target.value", event.target.value)
         const selectedSize = sizes.find(size => size.id.toString() === event.target.value);
         if (selectedSize) {
             setSize(selectedSize);
@@ -70,7 +69,7 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
                             images ?
                             (
                                 images.map(image => (
-                                    <Image key={image.id} src={image.url} width={40} height={40}  />
+                                    <Image key={image.id} src={image.url} width={40} height={40} alt='alt'  />
                                 )) 
                             )
                             : <div>No Main Image</div>
@@ -96,9 +95,9 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
                             className="mt-1 block p-1 w-20 border-half border-black shadow-sm focus:border-black focus:ring-black sm:text-sm"
                             onChange={handleSizeChange}
                         >
-                            {sizes.map(size => (
+                            { sizes && sizes.length > 0 ? sizes.map(size => (
                                 <option key={size.id} value={size.id}>{size.name}</option>
-                            ))}
+                            )) : <div>No Sizes Selected</div>}
                         </select>
                     </div>
                     <div className='flex flex-row gap-5'>
@@ -121,7 +120,7 @@ const Product: React.FC<ProductProps> = ({ product, setSize }) => {
             </div>
             <div className='h-full flex flex-col w-3/5'>
                 {mainImage ?
-                    <Image src={mainImage.url} width={500} height={500} />
+                    <Image src={mainImage.url} width={500} height={500} alt='alt' />
                     : <div>No Main Image</div>
                 }
             </div>
