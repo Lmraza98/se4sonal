@@ -8,3 +8,4 @@ export type StripePriceCreateParams = Stripe.PriceCreateParams
 
 export type StripeProduct = Stripe.Response<Stripe.Product>
 export type StripeProductCreateParams = Stripe.ProductCreateParams
+export type StripeProductUpdateParams = Stripe.ProductUpdateParams
