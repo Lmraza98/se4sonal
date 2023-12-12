@@ -90,7 +90,6 @@ export default function CreateProductPage() {
       imageIds: [],
     },
     onChange: (values):ValidationError => {
-      console.log("Form Values: ", values);
       setFormState(values)
       return null as unknown as ValidationError
     },
@@ -102,6 +101,10 @@ export default function CreateProductPage() {
     name: string;
     description: string;
     price: number;
+    categories: {
+      id: number;
+      name: string;
+    }[];
     capsule: {
       id: number;
       name: string;
@@ -116,6 +119,10 @@ export default function CreateProductPage() {
     name: "",
     description: "",
     price: -1,
+    categories: [{
+      id: -1,
+      name: "",
+    }],
     capsule: {
       id: -1,
       name: "",
@@ -128,8 +135,6 @@ export default function CreateProductPage() {
       name: "",
     }],
   });
-  
- 
 
   const { sizes } = useSize()
   const { prices } = usePrice();
@@ -140,81 +145,39 @@ export default function CreateProductPage() {
   const [selectedOtherImages, setSelectedOtherImages] = useState<number[]>([]);
 
   const setSelectMainImage = (id: number) => {
-    console.log("setSelectMainImage: ", id)
     setSelectedMainImage(id)
   }
   const setSelectOtherImages = (id: number[]) => {setSelectedOtherImages(id)}
-  const product = {
-    name: "Alyx Icon Flower",
-    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis elit euismod, fermentum est vel, pulvinar lectus. In hac habitasse platea dictumst. Sed consequat libero quis mi malesuada, ut feugiat massa feugiat. Duis feugiat tincidunt dolor ut pretium.",
-    price: 100,
-    capsule: {
-      id: 1,
-      name: "Fall Launch 2024",
-    },
-    mainImage: {
-      id: 1,
-      url: "/logo/black.png",
-      fileName: "test",
-    },
-    images: [
-      {
-        id: 1,
-        url: "/logo/black.png",
-        fileName: "test",
-      },
-    ],
-    sizes: [
-      {
-        id: 1,
-        name: "Small",
-      },
-      {
-        id: 2,
-        name: "Medium",
-      },
-      {
-        id: 3,
-        name: "Large",
-      },
-    ],
-  };
 
   const [size, setSize] = useState<Omit<Size, 'description'> | null>(null);
 
   useEffect(() => {
-    console.log("selectedMainImage", selectedMainImage)
-    console.log("selectedOtherImages", selectedOtherImages)
-   
-      setViewProduct({
+    
+    setViewProduct((product) => {
+      return {
+        ...product,
         name: formState?.name ?? "",
         description: formState?.description ?? "",
-        price: formState?.priceId ?? -1,
-        capsule: {
-          id: formState?.capsuleId ?? -1,
-          name: capsules?.find(capsule => capsule.id === formState?.capsuleId)?.name ?? "",
-        },
         mainImageId: selectedMainImage ?? -1,
         imageIds: selectedOtherImages,
-        sizes: formState?.productSizeIds !== undefined ?? formState?.productSizeIds.map(id => {
-          return {
-            id: id,
-            name: sizes?.find(size => size.id === id)?.name ?? "",
-          }
-        }
-        ) ?? [],
-      });
+      }
+    });
+    
     
    },[formState, selectedMainImage, selectedOtherImages])
 
-   console.log("TYPE", setViewProduct)
+   useEffect(() => {
+    console.log("viewProduct", viewProduct)
+   }, [viewProduct])
+
 
   return (
     <ProductDataProvider>
     <div className="flex flex-row">
-      <div className='h-full w-full flex flex-col justify-center align-middle p-20'>
+      <div className='h-full w-full flex flex-col justify-center align-middle px-20 pt-5'>
         <CreateProductForm
           form={form}
+          viewProduct={viewProduct}
           setViewProduct={setViewProduct}
           sizes={sizes}
           capsules={capsules}
@@ -225,7 +188,7 @@ export default function CreateProductPage() {
           setSelectedOtherImages={setSelectOtherImages}
         />
       </div>
-      <div className='w-full h-full flex flex-col justify-center align-middle'>
+      <div className='w-full h-screen flex flex-col justify-center align-middle'>
         <Product product={viewProduct} setSize={setSize} />
       </div>
      

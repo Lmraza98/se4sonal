@@ -7,19 +7,42 @@ import { type FormApi } from "@tanstack/react-form";
 import { useProductData } from './context'
 
 interface CreateProductFormProps {
-  setViewProduct: React.Dispatch<React.SetStateAction<{
+  viewProduct: {
     name: string;
     description: string;
     price: number;
+    categories: {
+      id: number;
+      name: string;
+    }[]
     capsule: {
-        id: number;
-        name: string;
+      id: number;
+      name: string;
     };
     mainImageId: number;
     imageIds: number[];
     sizes: {
-        id: number;
-        name: string;
+      id: number;
+      name: string;
+    }[];
+  }
+  setViewProduct: React.Dispatch<React.SetStateAction<{
+    name: string;
+    description: string;
+    price: number;
+    categories: {
+      id: number;
+      name: string;
+    }[];
+    capsule: {
+      id: number;
+      name: string;
+    };
+    mainImageId: number;
+    imageIds: number[];
+    sizes: {
+      id: number;
+      name: string;
     }[];
   }>>;
   setSelectedMainImage: (mainImage: number) => void;
@@ -51,11 +74,11 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   capsules,
   images,
   prices,
+  viewProduct,
   setSelectedMainImage,
   setSelectedOtherImages,
   setViewProduct
 }) => {
-  console.log(typeof setViewProduct, "TYPE")
   const [isSizeModalOpen, setSizeModalOpen] = useState<boolean>(false);
   const [isPriceModalOpen, setPriceModalOpen] = useState<boolean>(false);
   const [isCategoryModalOpen, setCategoryModalOpen] = useState<boolean>(false);
@@ -80,12 +103,16 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
   const handleSelection = (mainImage: number, otherImages: number[]) => {
     setSelectedMainImage(mainImage);
     setSelectedOtherImages(otherImages);
+    setViewProduct(product => ({
+      ...product,
+      mainImageId: mainImage,
+      imageIds: otherImages
+    }))
     form.setFieldValue('mainImageId', mainImage);
     form.setFieldValue('imageIds', otherImages);
   };
 
   useEffect(() => {
-    console.log("editSize", editSize);
     if (editSize) {
       setSizeModalOpen(true);
     }
@@ -109,9 +136,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
     }
   }, [editCapsule])
 
-  useEffect(() => {
-    console.log("form: ", form.state.values)
-  }, [form])
+
 
   if (!productData) {
     return null
@@ -191,10 +216,8 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
               const curr = typeof currency === 'string' ? currency : "USD";
               const ua = typeof unitAmmount === 'number' ? unitAmmount : 0
               createPrice.mutate({
-                name: name,
-                currency: curr,
+                currency: currency ?? "USD",
                 unitAmmount: ua,
-                stripeId: stripeId
               })
             }
           }
@@ -203,16 +226,6 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
           updateItem={(price: Price) => updatePrice(price)}
           handleChange={async (updatedPrice: Price) => {
             setSelectedPrice(updatedPrice)
-            // setViewProduct((product)=> {
-            //   return {
-            //     ...product,
-            //     price: updatedPrice.unitAmmount
-            //   }
-            // })
-            // const updatedPrices = prices?.map(price =>
-            //   price.id === updatedPrice.id ? updatedPrice : price
-            // );
-            // Update form state here
             field.handleChange(selectedPrice?.id ?? -1);
             await refreshPrices()
           }}
@@ -238,7 +251,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
         createItem={({ name, description }) => createCategory.mutate({ name, description })}
         deleteItem={deleteCategory}
         refreshItem={refreshCategories}
-        updateItem={(category: Category) => updateCategory(category)}
+        updateItem={(category: Category) => setEditCategory(category)}
         handleChange={async (updatedCategory: Category) => {
           const updatedCategories = categories?.map(category =>
             category.id === updatedCategory.id ? updatedCategory : category
@@ -283,7 +296,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
     </CreateItemModal>
     )
   }
-
+  const createProduct = api.product.createProduct.useMutation()
   return (
     <div className="w-full">
       <form.Provider>
@@ -291,7 +304,23 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
           onSubmit={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            void form.handleSubmit();
+            console.log("CATEGORY IDS: ", viewProduct.categories.map(category => category.id))
+            const categoryId = viewProduct.categories[0]?.id ?? -1
+            createProduct.mutate({
+              name: viewProduct.name,
+              description: viewProduct.description,
+              stock: 0,
+              active: false,
+              productSizeIds: viewProduct.sizes.map(size => size.id),
+              priceId: viewProduct.price,
+              capsuleId: viewProduct.capsule.id,
+              mainImageId: viewProduct.mainImageId,
+              imageIds: viewProduct.imageIds,
+              categoryId: categoryId
+            })
+            // api.product.createProduct.mutate(viewProduct)
+            // api.productRouter.createProduct.mutate({
+            // void form.handleSubmit();
           }}
         >
           <div className="flex h-full  w-full flex-col lg:flex-row gap-5">
@@ -443,7 +472,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
                       setViewProduct((selected)=> {
                         return {
                           ...selected,
-                          price: item.length > 0 ? item[0]?.unitAmmount ?? 0 : selected.price
+                          price: item.length > 0 ? item[0]?.id ?? 0 : selected.price
                         }
                       })
                       setSelectedPrice(item[0])
@@ -747,6 +776,11 @@ const PriceForm = ({ item, name, handleChange, deleteItem, setModalOpen, createI
   }, [item]);
 
   const handleSubmit = async () => {
+    // updateItem(form);
+    // await refreshItem()
+    // handleChange(form)
+    // setModalOpen(false)
+
     if (form.id !== undefined && form.id !== -1) {
       if (form.name) {
         // Updating an existing size
@@ -756,21 +790,32 @@ const PriceForm = ({ item, name, handleChange, deleteItem, setModalOpen, createI
         setModalOpen(false)
       } else {
         // Error handling for missing name field
-        console.error("Name is required for updating a size");
+        console.error("Name is required for updating a price");
       }
     } else {
-      // Creating a new size
-      if (form.name) {
-        const newSize = createItem(form);
+        createItem(form);
         await refreshItem()
         setModalOpen(false)
-      } else {
-        // Error handling for missing name field
-        console.error("Name is required for creating a size");
-      }
+    
     }
     // Additional actions like closing modal or revalidation can go here
   };
+  const handleCurrencyChange = (e) => {
+    let value = e.target.value;
+  
+    // Keep only digits
+    value = value.replace(/\D/g, '');
+  
+    // Pad with zeros if necessary (to ensure at least 3 digits)
+    value = value.padStart(3, '0');
+  
+    // Insert a decimal point before the last two digits
+    value = value.slice(0, -2) + '.' + value.slice(-2);
+  
+    // Update your form state with the value converted to a whole number
+    setForm({ ...form, unitAmmount: Math.round(parseFloat(value) * 100) });
+  };
+
   return (
     <div className="flex flex-col gap-4">
       <div>
@@ -778,10 +823,17 @@ const PriceForm = ({ item, name, handleChange, deleteItem, setModalOpen, createI
           Currency
         </label>
         <input
-          name={form?.name ? form.name : ''}
-          value={form?.name ? form.name : ''}
+          name={'CURRENCY'}
+          value={form?.currency ? form.currency : ''}
           // onBlur={field.handleBlur}
-          onChange={(e) => setForm({ ...form, currency: e.target.value })}
+          onChange={(e) => {
+            setForm(value => {
+              return {
+                ...value,
+                currency: e.target.value
+              }
+            })
+          }}
         />
       </div>
       <div>
@@ -789,9 +841,10 @@ const PriceForm = ({ item, name, handleChange, deleteItem, setModalOpen, createI
           Price
         </label>
         <input
-          name={form?.name ? form.name : ''}
-          value={form?.name ? form.name : ''}
-          onChange={(e) => setForm({ ...form, unitAmmount: Number(e.target.value) })}
+          name="PRICE"
+          type="text"
+          value={form?.unitAmmount ? (form.unitAmmount / 100).toFixed(2) : ''}
+          onChange={handleCurrencyChange}
         />
       </div>
       <div>
@@ -822,7 +875,7 @@ interface FormFieldProps<T extends DisplayItem> {
   label: string;
   type: 'input' | 'textarea' | 'dropdown' | 'multi-dropdown';
   items?: T[];
-  onEditItem?: (item: T) => void;
+  onEditItem: (item: T) => void;
   createItemModal?: React.ReactNode;
   renderSelectedItems?: (selectedItems: T[]) => React.ReactNode;
   selectedItems: T[];
@@ -886,8 +939,8 @@ function FormField<T extends Item>({
             items={items ?? []}
             value={selectedItems}
             onChange={(selected:T[]) => {
-              console.log("selected items: ", selected)
               setSelectedItems(selected)
+              // field.pushValue(selected.map(item => item.id))
               // field.handleChange(selected.map(item => item.id))
             }}
             onEditItem={onEditItem}

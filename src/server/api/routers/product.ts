@@ -6,7 +6,6 @@ import { type Prisma } from "@prisma/client";
 
 export const productRouter = createTRPCRouter({
   getProducts: publicProcedure.query(({ ctx }) => {
-    console.log("GET PRODUCTS HIT")
     return ctx.db.product.findMany({
       orderBy: {
         updatedAt: "desc",
@@ -21,7 +20,7 @@ export const productRouter = createTRPCRouter({
         stock: z.number().nullish(),
         active: z.boolean(),
         productSizeIds: z.array( z.number() ),
-        priceId: z.number().nullish(),
+        priceId: z.number(),
         capsuleId: z.number().nullish(),
         categoryId: z.number().nullish(),
         mainImageId: z.number().nullish(),
@@ -31,62 +30,140 @@ export const productRouter = createTRPCRouter({
       }),
     )
     .mutation(async ({ ctx, input }) => {
-      const productData = {
-        cartId: input.cartId,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        name: input.name,
-        description: input.description,
-        stock: input.stock,
-        mainImageId: input.mainImageId,
+      console.log("Creating product with:", {
         priceId: input.priceId,
-        categoryId: input.categoryId,
         capsuleId: input.capsuleId,
-        stripeId: input.stripeId,
-        active: input.active,
+        categoryId: input.categoryId,
+        mainImageId: input.mainImageId,
         imageIds: input.imageIds,
-        productSizesIds: input.productSizeIds,
-        sizes: input.productSizeIds ? {
-          connect: input.productSizeIds.map(id => ({ id })),
-        } : undefined,
-        mainImage: {
-          connect: { id: input.mainImageId },
-        },
-        cart: {
-          connect: { id: input.cartId },
-        },
-        category: {
-          connect: { id: input.categoryId },
-        },
-        images: {
-          connect: input.imageIds.map((id) => ({ id })),
-        },
-        capsule: input.capsuleId
-          ? {
-            connect: { id: input.capsuleId },
-          }
-          : undefined,
-        price: input.priceId
-          ? {
-            connect: { id: input.priceId },
-          }
-          : undefined
-        // other fields...
-      } as Prisma.ProductCreateInput;
-
-      const product = ctx.db.product.create({
-        data: productData,
-        include: {
-          images: true,
-          sizes: true,
-          capsule: true,
-          price: true,
-          category: true,
-          mainImage: true,
-        },
       });
-      return product;
-    }),
+      try {
+        const product = await ctx.db.$transaction(async (prisma) => {
+          // Use the transactional prisma instance for all queries within this block
+  
+          // First, handle the creation of the mainImage and additional images if they exist
+          let mainImageCreate;
+          if (input.mainImageId) {
+            mainImageCreate = await prisma.productImage.create({
+              data: {
+                image: {
+                  connect: { id: input.mainImageId },
+                },
+                // other fields of ProductImage if needed
+              },
+            });
+          }
+          console.log("mainImageCreate", mainImageCreate)
+  
+          let additionalImagesIds;
+          let sizes; 
+          if (input.imageIds && input.imageIds.length > 0) {
+            const images = await Promise.all(
+              input.imageIds.map( async (imageId) =>{
+                return await prisma.productImage.create({
+                  data: {
+                    imageId: imageId,
+                    // image: {
+                    //   connect: {id: imageId}
+                    // }
+                  }
+                })
+                
+              })
+            )
+          
+            // input.imageIds.map(imageId => prisma.productImage.createMany({
+            //   data: {
+            //     image: {
+            //       connect: { id: imageId },
+            //     },
+            //     // other fields of ProductImage if needed
+            //   },
+            // }))
+            console.log("additionalImagesCreate: \n\n", images)
+            additionalImagesIds = images.map(img => ({ id: img.id }));
+          }
+          if(input.productSizeIds && input.productSizeIds.length > 0) {
+
+            sizes = await Promise.all(
+              input.productSizeIds.map( async (sizeId) =>{
+                return await prisma.productSize.create({
+                  data: {
+                    size: {
+                      connect: {id: sizeId}
+                    }
+                    // productId: images[0].id,
+                    // sizeId: sizeId,
+                  }
+                })
+                
+              })
+            )
+
+
+          }
+        
+  
+          // Then create the Product, connecting it to the images
+          return prisma.product.create({
+            
+            data: {
+              name: input.name,
+              description: input.description,
+              stock: input.stock ?? null,
+              active: input.active,
+              sizes: {
+                connect: sizes.map(size => ({ id: size.id })),
+              },
+              // priceId: input.priceId,
+              price: {
+                connect: { id: input.priceId },
+              },
+
+              // capsuleId: input.capsuleId ?? undefined,
+              capsule: input.capsuleId ? {
+                connect: { id: input.capsuleId },
+              } : undefined,
+              // categoryId: input.categoryId ?? undefined,
+              category: input.categoryId ? {
+                connect: { id: input.categoryId },
+              } : undefined,
+              // productSizeIds: input.productSizeIds ?? [1],
+              // sizes: {
+              //   connect: input.productSizeIds.map(id => ({ id })),
+              // },
+              // mainImageId: input.mainImageId ?? undefined,
+              mainImage: mainImageCreate ? {
+                connect: { id: mainImageCreate.id },
+              } : undefined,
+              images: additionalImagesIds.length > 0 ? {
+                connect: additionalImagesIds.map(img => ({ id: img.id })),
+              } : undefined,
+              // ... other conditional fields ...
+            },
+            include: {
+              // ... include fields ...
+              capsule: true,
+              category: true,
+              price: true,
+              sizes: true,
+              mainImage: true,
+              images: true,
+
+            },
+          });
+        });
+  
+        return product;
+      
+        return product;
+      } catch (error) {
+        console.error("Error creating product:", error);
+        throw error;
+      }
+      
+      
+  }),
   getProduct: publicProcedure
     .input(
       z.object({

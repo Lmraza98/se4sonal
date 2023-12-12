@@ -19,7 +19,6 @@ export const categoryRouter = createTRPCRouter({
             })
         )
         .mutation(async ({ ctx, input }) => {
-            console.log("Creating category: ", input.name)
             const category = await ctx.db.category.create({
                 data: {
                     name: input.name,

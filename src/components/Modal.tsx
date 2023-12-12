@@ -47,9 +47,7 @@ export const Modal: React.FC<ModalProps> = ({ id, isOpen, onClose, children, tit
       <div ref={modalRef} className="relative bg-white w-full max-w-md m-auto p-6 rounded-lg shadow-lg" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
         {/* <h2 id="modalTitle" className="text-lg font-semibold">{title}</h2> */}
         {children}
-        <button onClick={onClose} className="absolute top-3 right-3 text-lg text-gray-700 hover:text-gray-900">
-          &times;
-        </button>
+        
       </div>
     </div>
   );

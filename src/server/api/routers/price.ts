@@ -6,7 +6,7 @@ import { createStripePrice } from "~/server/stripe/price";
 
 export const priceRouter = createTRPCRouter({
     getAllPrices: publicProcedure.query(async ({ ctx }) => {
-        const prices = await ctx.db.price.findMany({});
+        const prices = await ctx.db.price.findMany()
         if (!prices) {
             throw new Error("Prices not found");
         }
@@ -15,10 +15,10 @@ export const priceRouter = createTRPCRouter({
     createPrice: publicProcedure
         .input(
             z.object({
-                name: z.string().min(1).max(50),
+                name: z.string().min(1).max(50).optional(),
                 currency: z.string().min(1).max(50),
                 unitAmmount: z.number().min(1).max(1000000000),
-                stripeId: z.string().min(1).max(50),
+                stripeId: z.string().min(1).max(50).optional(),
             }),
         )
         .mutation(async ({ ctx, input }) => {
@@ -33,6 +33,19 @@ export const priceRouter = createTRPCRouter({
                 // if (!stripePrice || !stripePrice.id) {
                 //     throw new Error("Failed to create price in Stripe.");
                 // }
+                if(!input.name) {
+                    input.name = input.currency + " " + input.unitAmmount
+                }
+                if(!input.stripeId) {
+                    // const stripePrice = await createStripePrice({
+                    //     unit_amount: input.unitAmmount,
+                    //     currency: input.currency,
+                    //     product_data: {
+                    //         name: input.name,
+                    //     },
+                    // });
+                    input.stripeId = "TEST"
+                }
                 const price = await ctx.db.price.create({
                    data: {
                     unitAmmount: input.unitAmmount,
