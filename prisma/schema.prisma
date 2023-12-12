@@ -116,7 +116,7 @@ model Size {
 }
 
 model ProductSize {
-  id        Int @id @default(autoincrement())
+  id        Int  @id @default(autoincrement())
   productId Int?
   sizeId    Int
 

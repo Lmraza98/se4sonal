@@ -23,28 +23,8 @@ export const priceRouter = createTRPCRouter({
         )
         .mutation(async ({ ctx, input }) => {
             try {
-                // const stripePrice = await stripe.prices.create({
-                //     unit_amount: input.price,
-                //     currency: "usd",
-                //     product_data: {
-                //         name: input.description,
-                //     },
-                // });
-                // if (!stripePrice || !stripePrice.id) {
-                //     throw new Error("Failed to create price in Stripe.");
-                // }
                 if(!input.name) {
                     input.name = input.currency + " " + input.unitAmmount
-                }
-                if(!input.stripeId) {
-                    // const stripePrice = await createStripePrice({
-                    //     unit_amount: input.unitAmmount,
-                    //     currency: input.currency,
-                    //     product_data: {
-                    //         name: input.name,
-                    //     },
-                    // });
-                    input.stripeId = "TEST"
                 }
                 const price = await ctx.db.price.create({
                    data: {
@@ -89,36 +69,27 @@ export const priceRouter = createTRPCRouter({
         .input(
             z.object({
                 id: z.number().min(1).max(100),
-                price: z.number().min(1).max(1000000000),
-                description: z.string().min(1).max(50),
-                name: z.string().min(1).max(50),
-                stripeId: z.string().min(1).max(50),
+                // price: z.number().min(1).max(1000000000),
+                description: z.string().min(1).max(50).optional(),
+                name: z.string().min(1).max(50).optional(),
+                stripeId: z.string().min(1).max(50).optional(),
+                currency: z.string().min(1).max(50).optional(),
+                unitAmmount: z.number().min(1).max(1000000000).optional(),
             }),
         )
         .mutation(async ({ ctx, input }) => {
             try {
-                // const stripePrice = await stripe.prices.update(
-                //     input.stripeId,
-                //     {
-                //         unit_amount: input.price,
-                //         currency: "usd",
-                //         product_data: {
-                //             name: input.description,
-                //         },
-                //     },
-                // );
-                // if (!stripePrice || !stripePrice.id) {
-                //     throw new Error("Failed to update price in Stripe.");
-                // }
                 const price = await ctx.db.price.update({
                     where: {
                         id: input.id,
                     },
                     data: {
-                        description: input.description,
+                        // description: input.description,
                         stripeId: input.stripeId,
-                        price: input.price,
+                        // price: input.price,
                         name: input.name,
+                        currency: input.currency,
+                        unitAmmount: input.unitAmmount
                     },
                 });
                 if (!price) {

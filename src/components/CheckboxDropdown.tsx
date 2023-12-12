@@ -85,7 +85,7 @@ export const CheckboxDropdown = <T extends BaseDropdownItem>({
                     <input
                       type="checkbox"
                       id={item.id.toString()}
-                      name={item.name}
+                      name={item.name ?? ''}
                       checked={value.some(v => v.id === item.id)}
                       onChange={(e) => handleMultipleChange(e, item)}
                       className="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500"

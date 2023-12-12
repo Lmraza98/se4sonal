@@ -16,7 +16,7 @@ export const productRouter = createTRPCRouter({
     .input(
       z.object({
         name: z.string().min(1).max(50),
-        description: z.string().min(1).max(50),
+        description: z.string().min(1).max(200),
         stock: z.number().nullish(),
         active: z.boolean(),
         productSizeIds: z.array( z.number() ),
@@ -26,7 +26,7 @@ export const productRouter = createTRPCRouter({
         mainImageId: z.number().nullish(),
         imageIds: z.array(z.number()),
         cartId: z.number().optional(),
-        stripeId: z.string().min(1).max(50).optional(),
+        stripeId: z.string().min(1).max(20).optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
@@ -71,15 +71,6 @@ export const productRouter = createTRPCRouter({
                 
               })
             )
-          
-            // input.imageIds.map(imageId => prisma.productImage.createMany({
-            //   data: {
-            //     image: {
-            //       connect: { id: imageId },
-            //     },
-            //     // other fields of ProductImage if needed
-            //   },
-            // }))
             console.log("additionalImagesCreate: \n\n", images)
             additionalImagesIds = images.map(img => ({ id: img.id }));
           }
@@ -92,51 +83,58 @@ export const productRouter = createTRPCRouter({
                     size: {
                       connect: {id: sizeId}
                     }
-                    // productId: images[0].id,
-                    // sizeId: sizeId,
                   }
                 })
                 
               })
             )
-
-
           }
-        
-  
           // Then create the Product, connecting it to the images
           return prisma.product.create({
-            
+            // name: string
+            // description: string
+            // stock?: number | null
+            // createdAt?: Date | string
+            // updatedAt?: Date | string
+            // active?: boolean
+            // productSizeIds?: ProductCreateproductSizeIdsInput | number[]
+            // purchaseOrders?: PurchaseOrderCreateNestedManyWithoutProductsInput
+            // sizes?: ProductSizeCreateNestedManyWithoutProductsInput
+            // price: PriceCreateNestedOneWithoutProductsInput
+            // capsule: CapsuleCreateNestedOneWithoutProductsInput
+            // category: CategoryCreateNestedOneWithoutProductsInput
+            // mainImage: ProductImageCreateNestedOneWithoutProductAsMainInput
+            // images?: ProductImageCreateNestedManyWithoutProductInput
+            // carts?: CartCreateNestedManyWithoutProductsInput
             data: {
               name: input.name,
               description: input.description,
-              stock: input.stock ?? null,
-              active: input.active,
-              sizes: {
+              stock: input.stock ? input.stock : null,
+              active: input.active ? input.active : false,
+              sizes: sizes ? {
                 connect: sizes.map(size => ({ id: size.id })),
-              },
+              } : undefined,
               // priceId: input.priceId,
               price: {
                 connect: { id: input.priceId },
               },
-
               // capsuleId: input.capsuleId ?? undefined,
-              capsule: input.capsuleId ? {
-                connect: { id: input.capsuleId },
-              } : undefined,
+              capsule: {
+                connect: { id: input.capsuleId ? input.capsuleId : 1 },
+              },
               // categoryId: input.categoryId ?? undefined,
-              category: input.categoryId ? {
-                connect: { id: input.categoryId },
-              } : undefined,
+              category: {
+                connect: { id: input.categoryId ? input.categoryId : 1 },
+              } ,
               // productSizeIds: input.productSizeIds ?? [1],
               // sizes: {
               //   connect: input.productSizeIds.map(id => ({ id })),
               // },
               // mainImageId: input.mainImageId ?? undefined,
-              mainImage: mainImageCreate ? {
-                connect: { id: mainImageCreate.id },
-              } : undefined,
-              images: additionalImagesIds.length > 0 ? {
+              mainImage: {
+                connect: { id: mainImageCreate !== undefined ? mainImageCreate.id : 1},
+              },
+              images: (additionalImagesIds && additionalImagesIds.length > 0) ? {
                 connect: additionalImagesIds.map(img => ({ id: img.id })),
               } : undefined,
               // ... other conditional fields ...
@@ -154,8 +152,6 @@ export const productRouter = createTRPCRouter({
           });
         });
   
-        return product;
-      
         return product;
       } catch (error) {
         console.error("Error creating product:", error);
@@ -249,7 +245,7 @@ export const productRouter = createTRPCRouter({
         updateData.capsule = { connect: { id: input.capsuleId } };
       if (input.priceId !== undefined)
         updateData.price = { connect: { id: input.priceId } };
-      if (input.stripeId !== undefined) updateData.stripeId = input.stripeId;
+      if (input.stripeId !== undefined) updateData.price = { connect: { id: input.priceId }};
 
       // Relational fields
       if (input.imageIds) {
