@@ -3,8 +3,9 @@ import React, { useState, useEffect, useRef } from 'react';
 
 interface BaseDropdownItem {
   id: number;
-  name: string;
+  // name: string;
   description?: string | null;
+  name?: string | null;
 }
 
 interface CheckboxDropdownProps<T extends BaseDropdownItem> {

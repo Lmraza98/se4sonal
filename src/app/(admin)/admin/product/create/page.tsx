@@ -74,7 +74,6 @@ export default function CreateProductPage() {
     imageIds: number[];
   }>()
 
-
   const form = useForm({
     defaultValues: {
       stripeId: "",
@@ -82,12 +81,12 @@ export default function CreateProductPage() {
       description: "",
       stock: 0,
       active: false,
-      productSizeIds: [],
+      productSizeIds: [-1],
       priceId: -1,
       capsuleId: -1,
-      categoryIds: [],
+      categoryIds: [-1],
       mainImageId: -1,
-      imageIds: [],
+      imageIds: [-1],
     },
     onChange: (values):ValidationError => {
       setFormState(values)
@@ -152,7 +151,6 @@ export default function CreateProductPage() {
   const [size, setSize] = useState<Omit<Size, 'description'> | null>(null);
 
   useEffect(() => {
-    
     setViewProduct((product) => {
       return {
         ...product,
@@ -165,10 +163,6 @@ export default function CreateProductPage() {
     
     
    },[formState, selectedMainImage, selectedOtherImages])
-
-   useEffect(() => {
-    console.log("viewProduct", viewProduct)
-   }, [viewProduct])
 
 
   return (
@@ -191,8 +185,6 @@ export default function CreateProductPage() {
       <div className='w-full h-screen flex flex-col justify-center align-middle'>
         <Product product={viewProduct} setSize={setSize} />
       </div>
-     
-      
     </div>
     </ProductDataProvider>
   );

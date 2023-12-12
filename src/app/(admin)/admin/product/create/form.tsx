@@ -579,7 +579,7 @@ export const CreateProductForm: React.FC<CreateProductFormProps> = ({
 
 interface DisplayItem {
   id: number;
-  name: string;
+  name: string | null;
   // description: string | null;
 }
 
@@ -660,7 +660,7 @@ function CreateItemModal({
 
 interface Item {
   id: number;
-  name: string;
+  name: string | null;
   description?: string | null;
 }
 
@@ -800,7 +800,7 @@ const PriceForm = ({ item, name, handleChange, deleteItem, setModalOpen, createI
     }
     // Additional actions like closing modal or revalidation can go here
   };
-  const handleCurrencyChange = (e) => {
+  const handleCurrencyChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let value = e.target.value;
   
     // Keep only digits
